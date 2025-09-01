@@ -1,13 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chelonia - AI Supply Chain Platform | Eliesse Laslah</title>
-  
-  <!-- SEO Meta Tags -->
-  <meta name="description" content="Chelonia: Revolutionary AI-powered supply chain monitoring platform with real-time analytics, predictive insights, and automated workflows.">
-  <meta name="keywords" content="Supply Chain, AI Platform, Real-time Analytics, Machine Learning, Dashboard, Automation">
+  <title>Chelonia - Plateforme IA Supply Chain | Eliesse Laslah</title>
   
   <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
@@ -15,18 +11,70 @@
   <!-- Styles -->
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    .language-switcher {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-left: auto;
+    }
+    
+    .lang-btn {
+      background: var(--bg-alt);
+      border: 2px solid var(--highlight);
+      color: var(--text);
+      padding: 8px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+    }
+    
+    .lang-btn.active {
+      background: var(--highlight);
+      color: white;
+    }
+    
+    .lang-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    
+    [data-lang="en"] {
+      display: none;
+    }
+    
+    .lang-fr [data-lang="en"] {
+      display: none;
+    }
+    
+    .lang-en [data-lang="fr"] {
+      display: none;
+    }
+    
+    .lang-en [data-lang="en"] {
+      display: block;
+    }
+  </style>
 </head>
-<body>
+<body class="lang-fr">
 
   <!-- ========== NAVIGATION ========== -->
   <nav class="navbar">
     <div class="container nav-container">
       <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="index.html#about">About</a></li>
-        <li><a href="index.html#skills">Skills</a></li>
-        <li><a href="index.html#projects">Projects</a></li>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="index.html#about">À propos</a></li>
+        <li><a href="index.html#skills">Compétences</a></li>
+        <li><a href="index.html#projects">Projets</a></li>
       </ul>
+      
+      <!-- Language Switcher -->
+      <div class="language-switcher">
+        <button class="lang-btn active" data-lang="fr">🇫🇷 FR</button>
+        <button class="lang-btn" data-lang="en">🇺🇸 EN</button>
+      </div>
     </div>
   </nav>
 
@@ -36,11 +84,16 @@
       <div class="project-header">
         <div class="project-status">
           <span class="status-badge coming-soon">
-            <i class="fas fa-rocket"></i> In Development
+            <i class="fas fa-clock"></i> 
+            <span data-lang="fr">Bientôt disponible</span>
+            <span data-lang="en">Coming Soon</span>
           </span>
         </div>
         <h1>Chelonia</h1>
-        <p class="project-subtitle">AI-Powered Supply Chain Intelligence Platform</p>
+        <p class="project-subtitle">
+          <span data-lang="fr">Plateforme IA de Monitoring Supply Chain</span>
+          <span data-lang="en">AI-Powered Supply Chain Intelligence Platform</span>
+        </p>
         <div class="project-tech-badges">
           <span class="tech-badge">Python</span>
           <span class="tech-badge">TypeScript</span>
@@ -56,19 +109,37 @@
   <!-- ========== PROJECT OVERVIEW ========== -->
   <section class="project-section">
     <div class="container">
-      <h2 class="section-title"><i class="fas fa-bullseye"></i> Project Overview</h2>
+      <h2 class="section-title">
+        <i class="fas fa-bullseye"></i> 
+        <span data-lang="fr">Vue d'ensemble</span>
+        <span data-lang="en">Project Overview</span>
+      </h2>
       <div class="content-grid">
         <div class="content-text">
           <p class="lead">
-            Chelonia is a revolutionary full-stack web application that transforms supply chain management 
-            through artificial intelligence and real-time data visualization.
+            <span data-lang="fr">
+              Chelonia est une application web full-stack révolutionnaire qui transforme la gestion de la supply chain 
+              grâce à l'intelligence artificielle et aux visualisations en temps réel.
+            </span>
+            <span data-lang="en">
+              Chelonia is a revolutionary full-stack web application that transforms supply chain management 
+              through artificial intelligence and real-time data visualization.
+            </span>
           </p>
           <p>
-            This enterprise-grade platform empowers businesses with comprehensive supply chain visibility, 
-            featuring interactive dashboards, intelligent notification systems, and predictive analytics 
-            that drive data-driven decision making.
+            <span data-lang="fr">
+              Cette plateforme permet aux entreprises d'avoir une vision globale et automatisée de leur chaîne logistique, 
+              avec des tableaux de bord interactifs, un système de notifications intelligent et des outils d'analyse prédictive.
+            </span>
+            <span data-lang="en">
+              This enterprise-grade platform empowers businesses with comprehensive supply chain visibility, 
+              featuring interactive dashboards, intelligent notification systems, and predictive analytics 
+              that drive data-driven decision making.
+            </span>
           </p>
-          <div class="key-metrics">
+          
+          <!-- English-only metrics -->
+          <div class="key-metrics" data-lang="en">
             <div class="metric">
               <span class="metric-number">95%</span>
               <span class="metric-label">Process Automation</span>
@@ -84,8 +155,11 @@
           </div>
         </div>
         <div class="project-image">
-          <img src="assets/projects/Dashboard%20vue%20global.png" alt="Chelonia Main Dashboard - Real-time Supply Chain Overview">
-          <p class="image-caption">Main Dashboard - Real-time Supply Chain KPIs & Analytics</p>
+          <img src="assets/projects/Dashboard%20vue%20global.png" alt="Dashboard principal Chelonia">
+          <p class="image-caption">
+            <span data-lang="fr">Dashboard principal - Vue d'ensemble temps réel</span>
+            <span data-lang="en">Main Dashboard - Real-time Supply Chain KPIs & Analytics</span>
+          </p>
         </div>
       </div>
     </div>
@@ -94,26 +168,56 @@
   <!-- ========== PROBLEM & SOLUTION ========== -->
   <section class="project-section bg-alt">
     <div class="container">
-      <h2 class="section-title"><i class="fas fa-lightbulb"></i> Business Challenge & Solution</h2>
+      <h2 class="section-title">
+        <i class="fas fa-lightbulb"></i> 
+        <span data-lang="fr">Problématique & Solution</span>
+        <span data-lang="en">Business Challenge & Solution</span>
+      </h2>
       <div class="problem-solution-grid">
         <div class="problem-card">
-          <h3><i class="fas fa-exclamation-triangle"></i> Business Challenges</h3>
+          <h3>
+            <i class="fas fa-exclamation-triangle"></i> 
+            <span data-lang="fr">Problématique</span>
+            <span data-lang="en">Business Challenges</span>
+          </h3>
           <ul>
-            <li><strong>Data Silos:</strong> Fragmented supply chain data across multiple systems</li>
-            <li><strong>Limited Visibility:</strong> No real-time insights into operational performance</li>
-            <li><strong>Manual Processes:</strong> Time-consuming workflows prone to human error</li>
-            <li><strong>Reactive Management:</strong> Inability to anticipate and prevent disruptions</li>
-            <li><strong>Poor Decision Making:</strong> Lack of data-driven insights for strategic decisions</li>
+            <li data-lang="fr">Données supply chain dispersées et non centralisées</li>
+            <li data-lang="en"><strong>Data Silos:</strong> Fragmented supply chain data across multiple systems</li>
+            
+            <li data-lang="fr">Manque de visibilité en temps réel sur les performances</li>
+            <li data-lang="en"><strong>Limited Visibility:</strong> No real-time insights into operational performance</li>
+            
+            <li data-lang="fr">Processus manuels chronophages et sources d'erreurs</li>
+            <li data-lang="en"><strong>Manual Processes:</strong> Time-consuming workflows prone to human error</li>
+            
+            <li data-lang="fr">Difficultés de prise de décision rapide</li>
+            <li data-lang="en"><strong>Reactive Management:</strong> Inability to anticipate and prevent disruptions</li>
+            
+            <li data-lang="fr">Absence d'alertes automatisées sur les incidents</li>
+            <li data-lang="en"><strong>Poor Decision Making:</strong> Lack of data-driven insights for strategic decisions</li>
           </ul>
         </div>
         <div class="solution-card">
-          <h3><i class="fas fa-check-circle"></i> Chelonia Solution</h3>
+          <h3>
+            <i class="fas fa-check-circle"></i> 
+            <span data-lang="fr">Solution Chelonia</span>
+            <span data-lang="en">Chelonia Solution</span>
+          </h3>
           <ul>
-            <li><strong>Unified Data Hub:</strong> Centralized platform integrating all supply chain data</li>
-            <li><strong>Real-time Dashboards:</strong> Live KPI monitoring with interactive visualizations</li>
-            <li><strong>Process Automation:</strong> Intelligent workflows reducing manual intervention by 95%</li>
-            <li><strong>Predictive Analytics:</strong> AI-powered forecasting to prevent disruptions</li>
-            <li><strong>Smart Alerts:</strong> Proactive notifications for critical supply chain events</li>
+            <li data-lang="fr">Interface unifiée centralisant toutes les données</li>
+            <li data-lang="en"><strong>Unified Data Hub:</strong> Centralized platform integrating all supply chain data</li>
+            
+            <li data-lang="fr">Dashboards interactifs avec KPI temps réel</li>
+            <li data-lang="en"><strong>Real-time Dashboards:</strong> Live KPI monitoring with interactive visualizations</li>
+            
+            <li data-lang="fr">Automatisation complète des workflows</li>
+            <li data-lang="en"><strong>Process Automation:</strong> Intelligent workflows reducing manual intervention by 95%</li>
+            
+            <li data-lang="fr">Système de notifications intelligentes</li>
+            <li data-lang="en"><strong>Predictive Analytics:</strong> AI-powered forecasting to prevent disruptions</li>
+            
+            <li data-lang="fr">Analytics prédictive pour anticiper les problèmes</li>
+            <li data-lang="en"><strong>Smart Alerts:</strong> Proactive notifications for critical supply chain events</li>
           </ul>
         </div>
       </div>
@@ -123,46 +227,80 @@
   <!-- ========== FEATURES ========== -->
   <section class="project-section">
     <div class="container">
-      <h2 class="section-title"><i class="fas fa-cogs"></i> Core Features & Capabilities</h2>
+      <h2 class="section-title">
+        <i class="fas fa-cogs"></i> 
+        <span data-lang="fr">Fonctionnalités Clés</span>
+        <span data-lang="en">Core Features & Capabilities</span>
+      </h2>
       <div class="features-grid">
         <div class="feature-card">
           <div class="feature-image">
-            <img src="assets/projects/Page%20princial%20login.png" alt="Enterprise-grade authentication system">
+            <img src="assets/projects/Page%20princial%20login.png" alt="Interface de connexion sécurisée">
           </div>
-          <h3>Enterprise Authentication</h3>
-          <p>Secure multi-factor authentication with role-based access control (RBAC) and enterprise SSO integration for maximum security.</p>
+          <h3>
+            <span data-lang="fr">Authentification Sécurisée</span>
+            <span data-lang="en">Enterprise Authentication</span>
+          </h3>
+          <p>
+            <span data-lang="fr">Système de connexion robuste avec gestion des rôles utilisateurs et sécurité renforcée.</span>
+            <span data-lang="en">Secure multi-factor authentication with role-based access control (RBAC) and enterprise SSO integration for maximum security.</span>
+          </p>
         </div>
         
         <div class="feature-card">
           <div class="feature-image">
-            <img src="assets/projects/Upload%20CSV.png" alt="Automated data ingestion pipeline">
+            <img src="assets/projects/Upload%20CSV.png" alt="Module d'import de données">
           </div>
-          <h3>Intelligent Data Ingestion</h3>
-          <p>Automated CSV processing with data validation, cleansing, and transformation pipelines supporting multiple data formats and sources.</p>
+          <h3>
+            <span data-lang="fr">Import de Données Automatisé</span>
+            <span data-lang="en">Intelligent Data Ingestion</span>
+          </h3>
+          <p>
+            <span data-lang="fr">Upload et traitement automatique de fichiers CSV avec validation et nettoyage des données.</span>
+            <span data-lang="en">Automated CSV processing with data validation, cleansing, and transformation pipelines supporting multiple data formats and sources.</span>
+          </p>
         </div>
         
         <div class="feature-card">
           <div class="feature-image">
-            <img src="assets/projects/notification.png" alt="Smart notification system">
+            <img src="assets/projects/notification.png" alt="Système de notifications">
           </div>
-          <h3>AI-Powered Notifications</h3>
-          <p>Machine learning-driven alert system with customizable thresholds, escalation workflows, and multi-channel delivery (email, SMS, Slack).</p>
+          <h3>
+            <span data-lang="fr">Notifications Intelligentes</span>
+            <span data-lang="en">AI-Powered Notifications</span>
+          </h3>
+          <p>
+            <span data-lang="fr">Alertes en temps réel configurables pour surveiller les métriques critiques de la supply chain.</span>
+            <span data-lang="en">Machine learning-driven alert system with customizable thresholds, escalation workflows, and multi-channel delivery (email, SMS, Slack).</span>
+          </p>
         </div>
         
         <div class="feature-card">
           <div class="feature-image">
-            <img src="assets/projects/integration.png" alt="Enterprise API integrations">
+            <img src="assets/projects/integration.png" alt="Module d'intégration">
           </div>
-          <h3>Enterprise Integrations</h3>
-          <p>Seamless connectivity with ERP, WMS, and third-party systems through REST APIs, webhooks, and real-time data synchronization.</p>
+          <h3>
+            <span data-lang="fr">Intégrations API</span>
+            <span data-lang="en">Enterprise Integrations</span>
+          </h3>
+          <p>
+            <span data-lang="fr">Connexions seamless avec les systèmes existants via APIs REST pour synchronisation des données.</span>
+            <span data-lang="en">Seamless connectivity with ERP, WMS, and third-party systems through REST APIs, webhooks, and real-time data synchronization.</span>
+          </p>
         </div>
         
         <div class="feature-card">
           <div class="feature-image">
-            <img src="assets/projects/Top.png" alt="Advanced analytics and performance metrics">
+            <img src="assets/projects/Top.png" alt="Analytics et classements">
           </div>
-          <h3>Advanced Analytics Engine</h3>
-          <p>Sophisticated performance analytics with predictive modeling, trend analysis, and actionable insights for strategic decision-making.</p>
+          <h3>
+            <span data-lang="fr">Analytics Avancées</span>
+            <span data-lang="en">Advanced Analytics Engine</span>
+          </h3>
+          <p>
+            <span data-lang="fr">Tableaux de performance, classements et analyses prédictives pour optimiser les décisions.</span>
+            <span data-lang="en">Sophisticated performance analytics with predictive modeling, trend analysis, and actionable insights for strategic decision-making.</span>
+          </p>
         </div>
       </div>
     </div>
@@ -171,14 +309,18 @@
   <!-- ========== TECH STACK ========== -->
   <section class="project-section bg-alt">
     <div class="container">
-      <h2 class="section-title"><i class="fas fa-code"></i> Technical Architecture</h2>
+      <h2 class="section-title">
+        <i class="fas fa-code"></i> 
+        <span data-lang="fr">Architecture Technique</span>
+        <span data-lang="en">Technical Architecture & Integration</span>
+      </h2>
       <div class="tech-architecture">
         <div class="tech-layer">
-          <h3>🌐 Frontend & User Experience</h3>
+          <h3>🌐 Frontend & Interface</h3>
           <div class="tech-items">
             <div class="tech-item">
               <i class="fab fa-react"></i>
-              <span>React 18</span>
+              <span>React</span>
             </div>
             <div class="tech-item">
               <i class="fab fa-js"></i>
@@ -190,17 +332,17 @@
             </div>
             <div class="tech-item">
               <i class="fas fa-chart-bar"></i>
-              <span>D3.js / Recharts</span>
+              <span>Recharts</span>
             </div>
           </div>
         </div>
         
         <div class="tech-layer">
-          <h3>⚡ Backend & API Infrastructure</h3>
+          <h3>⚡ Backend & API</h3>
           <div class="tech-items">
             <div class="tech-item">
               <i class="fab fa-python"></i>
-              <span>Python 3.11</span>
+              <span>Python</span>
             </div>
             <div class="tech-item">
               <i class="fas fa-rocket"></i>
@@ -208,17 +350,13 @@
             </div>
             <div class="tech-item">
               <i class="fas fa-shield-alt"></i>
-              <span>JWT/OAuth 2.0</span>
-            </div>
-            <div class="tech-item">
-              <i class="fas fa-server"></i>
-              <span>SQLAlchemy ORM</span>
+              <span>JWT/OAuth</span>
             </div>
           </div>
         </div>
         
         <div class="tech-layer">
-          <h3>💾 Data & Machine Learning</h3>
+          <h3>💾 Data & Intelligence</h3>
           <div class="tech-items">
             <div class="tech-item">
               <i class="fas fa-database"></i>
@@ -230,24 +368,27 @@
             </div>
             <div class="tech-item">
               <i class="fas fa-brain"></i>
-              <span>Scikit-learn</span>
+              <span>Machine Learning</span>
             </div>
             <div class="tech-item">
               <i class="fab fa-docker"></i>
-              <span>Docker/K8s</span>
+              <span>Docker</span>
             </div>
           </div>
         </div>
         
         <div class="tech-layer">
-          <h3>🎯 Advanced Capabilities</h3>
+          <h3>
+            <span data-lang="fr">🎯 Fonctionnalités Avancées</span>
+            <span data-lang="en">🎯 Advanced Enterprise Features</span>
+          </h3>
           <div class="tech-features">
-            <span class="feature-tag">RESTful API Design</span>
-            <span class="feature-tag">Real-time WebSocket</span>
-            <span class="feature-tag">Predictive ML Models</span>
-            <span class="feature-tag">Microservices Architecture</span>
-            <span class="feature-tag">Interactive Dashboards</span>
-            <span class="feature-tag">Cloud-Native Deployment</span>
+            <span class="feature-tag">API REST FastAPI</span>
+            <span class="feature-tag">Real-time Analytics</span>
+            <span class="feature-tag">Machine Learning Predictions</span>
+            <span class="feature-tag">Authentication JWT</span>
+            <span class="feature-tag">Data Visualization</span>
+            <span class="feature-tag">Docker Deployment</span>
           </div>
         </div>
       </div>
@@ -257,66 +398,70 @@
   <!-- ========== DEVELOPMENT STATUS ========== -->
   <section class="project-section">
     <div class="container">
-      <h2 class="section-title"><i class="fas fa-rocket"></i> Development Roadmap</h2>
+      <h2 class="section-title">
+        <i class="fas fa-rocket"></i> 
+        <span data-lang="fr">État du Développement</span>
+        <span data-lang="en">Development Roadmap</span>
+      </h2>
       <div class="status-timeline">
         <div class="timeline-item completed">
           <div class="timeline-icon"><i class="fas fa-check"></i></div>
           <div class="timeline-content">
-            <h3>Phase 1: Architecture & Design</h3>
-            <p>Requirements analysis, UI/UX design, technical architecture, and database schema design</p>
-            <span class="timeline-status">Completed</span>
+            <h3>Phase 1 : Conception & Architecture</h3>
+            <p>Définition des besoins, maquettes UI/UX, architecture technique</p>
+            <span class="timeline-status">Terminé</span>
           </div>
         </div>
         
         <div class="timeline-item completed">
           <div class="timeline-icon"><i class="fas fa-check"></i></div>
           <div class="timeline-content">
-            <h3>Phase 2: Core Development</h3>
-            <p>User interface implementation, authentication system, and core business logic modules</p>
-            <span class="timeline-status">Completed</span>
+            <h3>Phase 2 : Développement Core</h3>
+            <p>Interface utilisateur, authentification, modules de base</p>
+            <span class="timeline-status">Terminé</span>
           </div>
         </div>
         
         <div class="timeline-item in-progress">
           <div class="timeline-icon"><i class="fas fa-cog fa-spin"></i></div>
           <div class="timeline-content">
-            <h3>Phase 3: Advanced Features</h3>
-            <p>AI/ML integration, performance optimization, comprehensive testing, and security hardening</p>
-            <span class="timeline-status">In Progress</span>
+            <h3>Phase 3 : Fonctionnalités Avancées</h3>
+            <p>IA prédictive, optimisations performance, tests approfondis</p>
+            <span class="timeline-status">En cours</span>
           </div>
         </div>
         
         <div class="timeline-item pending">
           <div class="timeline-icon"><i class="fas fa-clock"></i></div>
           <div class="timeline-content">
-            <h3>Phase 4: Production Launch</h3>
-            <p>Final testing, documentation, production deployment, and user training</p>
-            <span class="timeline-status">Upcoming</span>
+            <h3>Phase 4 : Déploiement</h3>
+            <p>Tests finaux, documentation, mise en production</p>
+            <span class="timeline-status">À venir</span>
           </div>
         </div>
       </div>
       
       <div class="coming-soon-cta">
-        <h3>🚀 Expected Launch: Q2 2025</h3>
-        <p>A comprehensive demo will be available soon. Meanwhile, feel free to reach out for detailed technical discussions about this project's architecture and implementation.</p>
+        <h3>🚀 Lancement prévu : Q2 2025</h3>
+        <p>Une démonstration complète sera disponible prochainement. En attendant, n'hésitez pas à me contacter pour plus de détails sur ce projet.</p>
         <a href="mailto:eliesse.laslah@gmail.com" class="btn primary">
-          <i class="fas fa-envelope"></i> Contact Me
+          <i class="fas fa-envelope"></i> Me contacter
         </a>
       </div>
     </div>
   </section>
 
-  <!-- ========== PROJECT NAVIGATION ========== -->
+  <!-- ========== NAVIGATION PROJETS ========== -->
   <section class="project-navigation">
     <div class="container">
       <div class="nav-projects">
         <a href="index.html#projects" class="nav-btn">
-          <i class="fas fa-arrow-left"></i> Back to Projects
+          <i class="fas fa-arrow-left"></i> Retour aux projets
         </a>
         <div class="nav-next">
-          <span class="next-label">Next Project:</span>
+          <span class="next-label">Projet suivant :</span>
           <a href="optimisation-supply-chain.html" class="nav-btn primary">
-            Supply Chain Optimization <i class="fas fa-arrow-right"></i>
+            Optimisation Supply Chain <i class="fas fa-arrow-right"></i>
           </a>
         </div>
       </div>
@@ -332,13 +477,55 @@
           <a href="https://github.com/EliLas75" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
           <a href="https://www.linkedin.com/in/e-laslah/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
           <a href="mailto:eliesse.laslah@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
-          <a href="assets/Eliesse.pdf" download aria-label="Resume PDF"><i class="fas fa-file-download"></i></a>
+          <a href="assets/Eliesse.pdf" download aria-label="CV PDF"><i class="fas fa-file-download"></i></a>
         </div>
       </div>
-      <p class="footer-copy">© 2025 – All rights reserved.</p>
+      <p class="footer-copy">© 2025 – Tous droits réservés.</p>
     </div>
   </footer>
 
   <script src="script.js"></script>
+  
+  <!-- Language Switcher Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const langBtns = document.querySelectorAll('.lang-btn');
+      const body = document.body;
+      
+      // Language switching functionality
+      function switchLanguage(lang) {
+        // Update body class
+        body.className = `lang-${lang}`;
+        
+        // Update active button state
+        langBtns.forEach(btn => {
+          btn.classList.remove('active');
+          if (btn.getAttribute('data-lang') === lang) {
+            btn.classList.add('active');
+          }
+        });
+        
+        // Update HTML lang attribute
+        document.documentElement.lang = lang;
+        
+        // Store preference in localStorage
+        localStorage.setItem('preferred-language', lang);
+      }
+      
+      // Add click event listeners
+      langBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+          const lang = this.getAttribute('data-lang');
+          switchLanguage(lang);
+        });
+      });
+      
+      // Check for saved language preference
+      const savedLang = localStorage.getItem('preferred-language');
+      if (savedLang && savedLang !== 'fr') {
+        switchLanguage(savedLang);
+      }
+    });
+  </script>
 </body>
 </html>
