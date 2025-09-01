@@ -5,6 +5,7 @@
 
 
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,6 +43,63 @@
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
+  <!-- Language Switcher Styles -->
+  <style>
+    .language-switcher {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-left: auto;
+    }
+    
+    .lang-btn {
+      background: var(--bg-alt);
+      border: 2px solid var(--highlight);
+      color: var(--text);
+      padding: 8px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      font-size: 14px;
+    }
+    
+    .lang-btn.active {
+      background: var(--highlight);
+      color: white;
+    }
+    
+    .lang-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    
+    [data-lang="en"] {
+      display: none;
+    }
+    
+    .lang-fr [data-lang="en"] {
+      display: none;
+    }
+    
+    .lang-en [data-lang="fr"] {
+      display: none;
+    }
+    
+    .lang-en [data-lang="en"] {
+      display: block;
+    }
+    
+    /* Responsive language switcher */
+    @media (max-width: 768px) {
+      .language-switcher {
+        margin-left: 0;
+        margin-top: 15px;
+        justify-content: center;
+      }
+    }
+  </style>
+  
   <!-- EmailJS -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   
@@ -73,7 +131,7 @@
   }
   </script>
 </head>
-<body>
+<body class="lang-en">
 
   <!-- ========== NAVIGATION STICKY GLASS EFFECT ========== -->
   <nav class="navbar">
@@ -86,12 +144,33 @@
       </button>
       
       <ul class="nav-links">
-        <li><a href="#top">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#top">
+          <span data-lang="fr">Accueil</span>
+          <span data-lang="en">Home</span>
+        </a></li>
+        <li><a href="#about">
+          <span data-lang="fr">À propos</span>
+          <span data-lang="en">About</span>
+        </a></li>
+        <li><a href="#skills">
+          <span data-lang="fr">Compétences</span>
+          <span data-lang="en">Skills</span>
+        </a></li>
+        <li><a href="#projects">
+          <span data-lang="fr">Projets</span>
+          <span data-lang="en">Projects</span>
+        </a></li>
+        <li><a href="#contact">
+          <span data-lang="fr">Contact</span>
+          <span data-lang="en">Contact</span>
+        </a></li>
       </ul>
+      
+      <!-- Language Switcher -->
+      <div class="language-switcher">
+        <button class="lang-btn" data-lang="fr">🇫🇷 FR</button>
+        <button class="lang-btn active" data-lang="en">🇺🇸 EN</button>
+      </div>
     </div>
   </nav>
 
@@ -102,14 +181,29 @@
         <img src="assets/CV photo.jpg" alt="Eliesse Laslah" class="hero-img" loading="eager">
         <div class="hero-text">
           <h1>Eliesse Laslah</h1>
-          <p class="tagline">Data Analyst & BI Developer</p>
+          <p class="tagline">
+            <span data-lang="fr">Data Analyst & BI Developer</span>
+            <span data-lang="en">Data Analyst & BI Developer</span>
+          </p>
           <p class="intro">
-            I design clear, automated and useful data solutions to transform information into decisions. 
-            Passionate about data optimization and visualization.
+            <span data-lang="fr">
+              Je conçois des solutions de données claires, automatisées et utiles pour transformer l'information en décisions. 
+              Passionné par l'optimisation et la visualisation des données.
+            </span>
+            <span data-lang="en">
+              I design clear, automated and useful data solutions to transform information into decisions. 
+              Passionate about data optimization and visualization.
+            </span>
           </p>
           <div class="hero-buttons">
-            <a href="assets/Eliesse.pdf" class="btn primary" download>Download Resume</a>
-            <a href="#about" class="btn secondary">Learn More</a>
+            <a href="assets/Eliesse.pdf" class="btn primary" download>
+              <span data-lang="fr">Télécharger CV</span>
+              <span data-lang="en">Download Resume</span>
+            </a>
+            <a href="#about" class="btn secondary">
+              <span data-lang="fr">En savoir plus</span>
+              <span data-lang="en">Learn More</span>
+            </a>
           </div>
 
           <!-- ========== SOCIAL ICONS ========== -->
@@ -126,11 +220,22 @@
   <!-- ========== ABOUT SECTION ========== -->
   <section class="about" id="about">
   <div class="container">
-    <h2 class="section-title"><i class="fa-solid fa-user"></i> About</h2>
+    <h2 class="section-title">
+      <i class="fa-solid fa-user"></i> 
+      <span data-lang="fr">À propos</span>
+      <span data-lang="en">About</span>
+    </h2>
     <p>
-      Passionate about data, I design and deploy dashboards with Power BI, 
-      automate processes with Power Automate and clean data using Python and Excel. 
-      My approach is result-oriented, business-focused and user-friendly.
+      <span data-lang="fr">
+        Passionné par les données, je conçois et déploie des tableaux de bord avec Power BI, 
+        j'automatise les processus avec Power Automate et je nettoie les données avec Python et Excel. 
+        Mon approche est orientée résultats, centrée sur le business et conviviale.
+      </span>
+      <span data-lang="en">
+        Passionate about data, I design and deploy dashboards with Power BI, 
+        automate processes with Power Automate and clean data using Python and Excel. 
+        My approach is result-oriented, business-focused and user-friendly.
+      </span>
     </p>
   </div>
 </section>
@@ -139,12 +244,23 @@
   <!-- === SECTION COMPÉTENCES MIS À JOUR === -->
 <section class="skills" id="skills">
   <div class="container">
-    <h2 class="section-title"><i class="fa-solid fa-star"></i> My Skills</h2>
-    <p class="legend-stars">★★★ : Expert • ★★☆ : Intermediate • ★☆☆ : Beginner</p>
+    <h2 class="section-title">
+      <i class="fa-solid fa-star"></i> 
+      <span data-lang="fr">Mes Compétences</span>
+      <span data-lang="en">My Skills</span>
+    </h2>
+    <p class="legend-stars">
+      <span data-lang="fr">★★★ : Expert • ★★☆ : Intermédiaire • ★☆☆ : Débutant</span>
+      <span data-lang="en">★★★ : Expert • ★★☆ : Intermediate • ★☆☆ : Beginner</span>
+    </p>
 
     <!-- LOGICIELS -->
     <div class="skills-group">
-      <h3 class="skill-title"><i class="fa-solid fa-display"></i> Software</h3>
+      <h3 class="skill-title">
+        <i class="fa-solid fa-display"></i> 
+        <span data-lang="fr">Logiciels</span>
+        <span data-lang="en">Software</span>
+      </h3>
       <div class="carousel-wrapper">
         <div class="skills-carousel">
           <!-- 3 ÉTOILES - MAÎTRISÉ -->
@@ -165,7 +281,11 @@
 
     <!-- TECHNOLOGIES -->
     <div class="skills-group">
-      <h3 class="skill-title"><i class="fa-solid fa-brain"></i> Languages & Technologies</h3>
+      <h3 class="skill-title">
+        <i class="fa-solid fa-brain"></i> 
+        <span data-lang="fr">Langages & Technologies</span>
+        <span data-lang="en">Languages & Technologies</span>
+      </h3>
       <div class="carousel-wrapper">
         <div class="skills-carousel">
           <!-- 3 ÉTOILES - MAÎTRISÉ -->
@@ -194,7 +314,11 @@
 <!-- ========== PROJECTS SECTION ========== -->
 <section class="projects" id="projects">
   <div class="container">
-    <h2 class="section-title"><i class="fas fa-folder-open"></i> Projects</h2>
+    <h2 class="section-title">
+      <i class="fas fa-folder-open"></i> 
+      <span data-lang="fr">Projets</span>
+      <span data-lang="en">Projects</span>
+    </h2>
 
     <div class="projects-grid">
       <!-- Projet 1 - Chelonia -->
@@ -202,7 +326,10 @@
         <a href="chelonia.html">
           <img src="assets/projects/Dashboard%20vue%20global.png" alt="Chelonia - Dashboard Supply Chain" loading="lazy">
         </a>
-        <h3>Chelonia - Supply Chain Platform</h3>
+        <h3>
+          <span data-lang="fr">Chelonia - Plateforme Supply Chain</span>
+          <span data-lang="en">Chelonia - Supply Chain Platform</span>
+        </h3>
         <div class="badges">
           <span class="badge">Python</span>
           <span class="badge">TypeScript</span>
@@ -210,8 +337,14 @@
           <span class="badge">FastAPI</span>
           <span class="badge">PostgreSQL</span>
         </div>
-        <p class="project-desc">Full-stack web application for supply chain monitoring with interactive dashboard, automated notification system and real-time KPI visualizations.</p>
-        <a href="chelonia.html" class="project-link">View Project ↗</a>
+        <p class="project-desc">
+          <span data-lang="fr">Application web full-stack pour le monitoring de la supply chain avec tableau de bord interactif, système de notifications automatisé et visualisations KPI temps réel.</span>
+          <span data-lang="en">Full-stack web application for supply chain monitoring with interactive dashboard, automated notification system and real-time KPI visualizations.</span>
+        </p>
+        <a href="chelonia.html" class="project-link">
+          <span data-lang="fr">Voir le projet ↗</span>
+          <span data-lang="en">View Project ↗</span>
+        </a>
       </div>
 
       <!-- Projet 2 -->
@@ -219,15 +352,24 @@
         <a href="optimisation-supply-chain.html">
           <img src="assets/projects/optimisation-supply-chain/Présentation%20Dashboard.png" alt="Optimisation Supply Chain Dashboard" loading="lazy">
         </a>
-        <h3>Supply Chain Optimization</h3>
+        <h3>
+          <span data-lang="fr">Optimisation Supply Chain</span>
+          <span data-lang="en">Supply Chain Optimization</span>
+        </h3>
         <div class="badges">
           <span class="badge">Power BI</span>
           <span class="badge">Power Automate</span>
           <span class="badge">Kinaxis</span>
           <span class="badge">DAX</span>
         </div>
-        <p class="project-desc">International forecasting and inventory availability transformation with full supply chain reporting automation, zero manual reprocessing.</p>
-        <a href="optimisation-supply-chain.html" class="project-link">View Project ↗</a>
+        <p class="project-desc">
+          <span data-lang="fr">Transformation des prévisions internationales et de la disponibilité des stocks avec automatisation complète du reporting supply chain, zéro retraitement manuel.</span>
+          <span data-lang="en">International forecasting and inventory availability transformation with full supply chain reporting automation, zero manual reprocessing.</span>
+        </p>
+        <a href="optimisation-supply-chain.html" class="project-link">
+          <span data-lang="fr">Voir le projet ↗</span>
+          <span data-lang="en">View Project ↗</span>
+        </a>
       </div>
 
       <!-- Projet 3 -->
@@ -243,34 +385,58 @@
           <div class="pipeline-content">
             <div class="pipeline-step">
               <div class="step-circle email"></div>
-              <div class="step-label">Extract</div>
+              <div class="step-label">
+                <span data-lang="fr">Extraire</span>
+                <span data-lang="en">Extract</span>
+              </div>
             </div>
             <div class="pipeline-arrow">→</div>
             <div class="pipeline-step">
               <div class="step-circle process"></div>
-              <div class="step-label">Process</div>
+              <div class="step-label">
+                <span data-lang="fr">Traiter</span>
+                <span data-lang="en">Process</span>
+              </div>
             </div>
             <div class="pipeline-arrow">→</div>
             <div class="pipeline-step">
               <div class="step-circle output"></div>
-              <div class="step-label">Output</div>
+              <div class="step-label">
+                <span data-lang="fr">Sortie</span>
+                <span data-lang="en">Output</span>
+              </div>
             </div>
           </div>
           <div class="pipeline-stats">
-            <span class="stat">+500 files</span>
-            <span class="stat">0% manual</span>
+            <span class="stat">
+              <span data-lang="fr">+500 fichiers</span>
+              <span data-lang="en">+500 files</span>
+            </span>
+            <span class="stat">
+              <span data-lang="fr">0% manuel</span>
+              <span data-lang="en">0% manual</span>
+            </span>
           </div>
         </div>
         </a>
-        <h3>Intelligent Extraction & Automation</h3>
+        <h3>
+          <span data-lang="fr">Extraction Intelligente & Automatisation</span>
+          <span data-lang="en">Intelligent Extraction & Automation</span>
+        </h3>
         <div class="badges">
           <span class="badge">Power Automate</span>
           <span class="badge">Alteryx</span>
           <span class="badge">Python</span>
           <span class="badge">OCR</span>
         </div>
-        <p class="project-desc">Complete automation of multi-source pipelines with OCR processing and 500+ automated files, zero manual data entry.</p>
-        <a href="extraction-intelligente.html" class="project-link">View Project ↗</a>
+        <p class="project-desc">
+          <span data-lang="fr">Automatisation complète de pipelines multi-sources avec traitement OCR et 500+ fichiers automatisés, zéro saisie manuelle de données.</span>
+          <span data-lang="en">Complete automation of multi-source pipelines with OCR processing and 500+ automated files, zero manual data entry.</span>
+        </p>
+        <a href="extraction-intelligente.html" class="project-link">
+          <span data-lang="fr">Voir le projet ↗</span>
+          <span data-lang="en">View Project ↗</span>
+        </a>
       </div>
     </div>
   </div>
@@ -279,18 +445,31 @@
 <!-- ========== CONTACT SECTION ========== -->
 <section class="contact" id="contact">
   <div class="container">
-    <h2 class="section-title"><i class="fas fa-envelope"></i> Contact Me</h2>
+    <h2 class="section-title">
+      <i class="fas fa-envelope"></i> 
+      <span data-lang="fr">Me Contacter</span>
+      <span data-lang="en">Contact Me</span>
+    </h2>
     
     <div class="contact-content">
       <div class="contact-info">
-        <h3>Let's discuss your project</h3>
-        <p>Do you have a data project, need to optimize your processes or create dashboards? I would be happy to discuss with you.</p>
+        <h3>
+          <span data-lang="fr">Discutons de votre projet</span>
+          <span data-lang="en">Let's discuss your project</span>
+        </h3>
+        <p>
+          <span data-lang="fr">Vous avez un projet de données, besoin d'optimiser vos processus ou créer des tableaux de bord ? Je serais ravi d'en discuter avec vous.</span>
+          <span data-lang="en">Do you have a data project, need to optimize your processes or create dashboards? I would be happy to discuss with you.</span>
+        </p>
         
         <div class="contact-methods">
           <a href="mailto:eliesse.laslah@gmail.com" class="contact-method">
             <i class="fas fa-envelope"></i>
             <div>
-              <h4>Email</h4>
+              <h4>
+                <span data-lang="fr">Email</span>
+                <span data-lang="en">Email</span>
+              </h4>
               <span>eliesse.laslah@gmail.com</span>
             </div>
           </a>
@@ -298,7 +477,10 @@
           <a href="https://www.linkedin.com/in/e-laslah/" target="_blank" class="contact-method">
             <i class="fab fa-linkedin"></i>
             <div>
-              <h4>LinkedIn</h4>
+              <h4>
+                <span data-lang="fr">LinkedIn</span>
+                <span data-lang="en">LinkedIn</span>
+              </h4>
               <span>e-laslah</span>
             </div>
           </a>
@@ -306,7 +488,10 @@
           <a href="https://github.com/EliLas75" target="_blank" class="contact-method">
             <i class="fab fa-github"></i>
             <div>
-              <h4>GitHub</h4>
+              <h4>
+                <span data-lang="fr">GitHub</span>
+                <span data-lang="en">GitHub</span>
+              </h4>
               <span>EliLas75</span>
             </div>
           </a>
@@ -374,9 +559,16 @@
         <a href="assets/Eliesse.pdf" download aria-label="Resume PDF"><i class="fas fa-file-download"></i></a>
       </div>
     </div>
-    <p class="footer-copy">© 2025 – All rights reserved.</p>
+    <p class="footer-copy">
+      <span data-lang="fr">© 2025 – Tous droits réservés.</span>
+      <span data-lang="en">© 2025 – All rights reserved.</span>
+    </p>
     <!-- Bouton flottant vers le haut -->
-<a href="#top" class="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></a>
+<a href="#top" class="back-to-top" aria-label="Back to top">
+  <span data-lang="fr" style="display: none;">Retour en haut</span>
+  <span data-lang="en">Back to top</span>
+  <i class="fas fa-arrow-up"></i>
+</a>
 
   </div>
 </footer>
@@ -480,6 +672,46 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 3000);
       };
     });
+  }
+});
+
+// Language Switcher Script
+document.addEventListener('DOMContentLoaded', function() {
+  const langBtns = document.querySelectorAll('.lang-btn');
+  const body = document.body;
+  
+  // Language switching functionality
+  function switchLanguage(lang) {
+    // Update body class
+    body.className = `lang-${lang}`;
+    
+    // Update active button state
+    langBtns.forEach(btn => {
+      btn.classList.remove('active');
+      if (btn.getAttribute('data-lang') === lang) {
+        btn.classList.add('active');
+      }
+    });
+    
+    // Update HTML lang attribute
+    document.documentElement.lang = lang;
+    
+    // Store preference in localStorage
+    localStorage.setItem('preferred-language', lang);
+  }
+  
+  // Add click event listeners
+  langBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      const lang = this.getAttribute('data-lang');
+      switchLanguage(lang);
+    });
+  });
+  
+  // Check for saved language preference
+  const savedLang = localStorage.getItem('preferred-language');
+  if (savedLang && savedLang !== 'en') {
+    switchLanguage(savedLang);
   }
 });
 </script>
