@@ -20,7 +20,7 @@
       margin-left: auto;
     }
     
-    .lang-btn {
+    .lang-select {
       background: var(--bg-alt);
       border: 2px solid var(--highlight);
       color: var(--text);
@@ -29,16 +29,18 @@
       cursor: pointer;
       transition: all 0.3s ease;
       font-weight: 600;
+      font-size: 14px;
+      outline: none;
     }
     
-    .lang-btn.active {
-      background: var(--highlight);
-      color: white;
-    }
-    
-    .lang-btn:hover {
+    .lang-select:hover {
       transform: translateY(-2px);
       box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    
+    .lang-select:focus {
+      border-color: var(--highlight);
+      box-shadow: 0 0 0 3px rgba(0,0,0,0.1);
     }
     
     [data-lang="en"] {
@@ -53,9 +55,74 @@
       display: none;
     }
     
-    .lang-en [data-lang="en"] {
-      display: block;
-    }
+         .lang-en [data-lang="en"] {
+       display: block;
+     }
+     
+           .lang-en [data-lang="en"] strong {
+        display: inline !important;
+      }
+      
+      .lang-fr [data-lang="en"] strong {
+        display: none !important;
+      }
+      
+      .lang-en [data-lang="fr"] strong {
+        display: none !important;
+      }
+      
+      /* Règle spécifique pour masquer le texte anglais en français */
+      .lang-fr [data-lang="en"] {
+        display: none !important;
+      }
+      
+      /* Règle spécifique pour masquer le texte français en anglais */
+      .lang-en [data-lang="fr"] {
+        display: none !important;
+      }
+      
+      /* Règle ULTRA spécifique pour masquer le texte anglais en français */
+      .lang-fr [data-lang="en"] {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        position: absolute !important;
+        left: -9999px !important;
+      }
+      
+      /* Règle NUCLEAIRE pour masquer TOUT le texte anglais en français */
+      .lang-fr [data-lang="en"],
+      .lang-fr [data-lang="en"] *,
+      .lang-fr [data-lang="en"] strong,
+      .lang-fr [data-lang="en"] span,
+      .lang-fr [data-lang="en"] p {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        position: absolute !important;
+        left: -9999px !important;
+        width: 0 !important;
+        height: 0 !important;
+        overflow: hidden !important;
+        clip: rect(0, 0, 0, 0) !important;
+      }
+      
+      /* Règle FINALE pour masquer le texte anglais en français */
+      body.lang-fr [data-lang="en"] {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        position: absolute !important;
+        left: -9999px !important;
+        width: 0 !important;
+        height: 0 !important;
+        overflow: hidden !important;
+        clip: rect(0, 0, 0, 0) !important;
+        font-size: 0 !important;
+        line-height: 0 !important;
+        color: transparent !important;
+        background: transparent !important;
+      }
   </style>
 </head>
 <body class="lang-fr">
@@ -72,8 +139,10 @@
       
       <!-- Language Switcher -->
       <div class="language-switcher">
-        <button class="lang-btn active" data-lang="fr">🇫🇷 FR</button>
-        <button class="lang-btn" data-lang="en">🇺🇸 EN</button>
+        <select id="languageSelect" class="lang-select">
+          <option value="fr" selected>🇫🇷 Français</option>
+          <option value="en">🇺🇸 English</option>
+        </select>
       </div>
     </div>
   </nav>
@@ -83,9 +152,11 @@
     <div class="container">
       <div class="project-header">
         <div class="project-status">
-          <span class="status-badge completed">
-            <i class="fas fa-check-circle"></i> Terminé
-          </span>
+                     <span class="status-badge completed">
+             <i class="fas fa-check-circle"></i> 
+             <span data-lang="fr">Terminé</span>
+             <span data-lang="en">Completed</span>
+           </span>
         </div>
         <h1>
           <span data-lang="fr">Optimisation Supply Chain</span>
@@ -110,9 +181,7 @@
   <section class="project-section">
     <div class="container">
       <h2 class="section-title">
-        <i class="fas fa-bullseye"></i> 
-        <span data-lang="fr">Vue d'ensemble</span>
-        <span data-lang="en">Executive Summary</span>
+        <i class="fas fa-bullseye"></i><span data-lang="fr">Vue d'ensemble</span><span data-lang="en">Executive Summary</span>
       </h2>
       <div class="content-grid">
         <div class="content-text">
@@ -140,25 +209,14 @@
             </span>
           </p>
           
-          <!-- English-only metrics -->
-          <div class="key-metrics" data-lang="en">
-            <div class="metric">
-              <span class="metric-number">100%</span>
-              <span class="metric-label">Automated Reporting</span>
-            </div>
-            <div class="metric">
-              <span class="metric-number">0%</span>
-              <span class="metric-label">Manual Processing</span>
-            </div>
-            <div class="metric">
-              <span class="metric-number">Global</span>
-              <span class="metric-label">Multi-Subsidiary Coverage</span>
-            </div>
-          </div>
+
         </div>
         <div class="project-image">
           <img src="assets/projects/optimisation-supply-chain/Présentation%20Dashboard.png" alt="Dashboard principal Optimisation Supply Chain">
-          <p class="image-caption">Dashboard principal - Pilotage supply chain temps réel</p>
+                     <p class="image-caption">
+             <span data-lang="fr">Dashboard principal - Pilotage supply chain temps réel</span>
+             <span data-lang="en">Main Dashboard - Real-time Supply Chain Management</span>
+           </p>
         </div>
       </div>
     </div>
@@ -167,29 +225,74 @@
   <!-- ========== PROBLEM & SOLUTION ========== -->
   <section class="project-section bg-alt">
     <div class="container">
-      <h2 class="section-title"><i class="fas fa-lightbulb"></i> Problématique & Solution</h2>
+             <h2 class="section-title"><i class="fas fa-lightbulb"></i> 
+         <span data-lang="fr">Problématique & Solution</span>
+         <span data-lang="en">Business Challenge & Solution</span>
+       </h2>
       <div class="problem-solution-grid">
         <div class="problem-card">
-          <h3><i class="fas fa-exclamation-triangle"></i> Problématique</h3>
-          <ul>
-            <li>Faible fiabilité des forecasts existants</li>
-            <li>Visibilité réduite entre filiales internationales</li>
-            <li>Décisions prises sans base analytique consolidée</li>
-            <li>Processus manuels chronophages et sources d'erreurs</li>
-            <li>Absence d'alertes préventives sur les ruptures</li>
-            <li>Données dispersées dans multiples systèmes</li>
-          </ul>
+          <h3><i class="fas fa-exclamation-triangle"></i> 
+           <span data-lang="fr">Problématique</span>
+           <span data-lang="en">Business Challenge</span>
+         </h3>
+                     <ul>
+             <li>
+               <span data-lang="fr">Faible fiabilité des forecasts existants</span>
+               <span data-lang="en">Low reliability of existing forecasts</span>
+             </li>
+             <li>
+               <span data-lang="fr">Visibilité réduite entre filiales internationales</span>
+               <span data-lang="en">Reduced visibility between international subsidiaries</span>
+             </li>
+             <li>
+               <span data-lang="fr">Décisions prises sans base analytique consolidée</span>
+               <span data-lang="en">Decisions made without consolidated analytical basis</span>
+             </li>
+             <li>
+               <span data-lang="fr">Processus manuels chronophages et sources d'erreurs</span>
+               <span data-lang="en">Time-consuming manual processes and error sources</span>
+             </li>
+             <li>
+               <span data-lang="fr">Absence d'alertes préventives sur les ruptures</span>
+               <span data-lang="en">Lack of preventive alerts on stockouts</span>
+             </li>
+             <li>
+               <span data-lang="fr">Données dispersées dans multiples systèmes</span>
+               <span data-lang="en">Data scattered across multiple systems</span>
+             </li>
+           </ul>
         </div>
         <div class="solution-card">
-          <h3><i class="fas fa-check-circle"></i> Solution Déployée</h3>
-          <ul>
-            <li>Connexion directe aux données critiques Kinaxis</li>
-            <li>Dashboard Power BI interactif temps réel</li>
-            <li>Segmentation dynamique ABC/XYZ intelligente</li>
-            <li>KPIs sur-mesure (FCE %, taux dispo, biais prévision)</li>
-            <li>Alertes automatisées via Power Automate</li>
-            <li>Référentiel centralisé avec historisation complète</li>
-          </ul>
+          <h3><i class="fas fa-check-circle"></i> 
+           <span data-lang="fr">Solution Déployée</span>
+           <span data-lang="en">Deployed Solution</span>
+         </h3>
+                     <ul>
+             <li>
+               <span data-lang="fr">Connexion directe aux données critiques Kinaxis</span>
+               <span data-lang="en">Direct connection to critical Kinaxis data</span>
+             </li>
+             <li>
+               <span data-lang="fr">Dashboard Power BI interactif temps réel</span>
+               <span data-lang="en">Real-time interactive Power BI dashboard</span>
+             </li>
+             <li>
+               <span data-lang="fr">Segmentation dynamique ABC/XYZ intelligente</span>
+               <span data-lang="en">Intelligent dynamic ABC/XYZ segmentation</span>
+             </li>
+             <li>
+               <span data-lang="fr">KPIs sur-mesure (FCE %, taux dispo, biais prévision)</span>
+               <span data-lang="en">Custom KPIs (FCE %, availability rate, forecast bias)</span>
+             </li>
+             <li>
+               <span data-lang="fr">Alertes automatisées via Power Automate</span>
+               <span data-lang="en">Automated alerts via Power Automate</span>
+             </li>
+             <li>
+               <span data-lang="fr">Référentiel centralisé avec historisation complète</span>
+               <span data-lang="en">Centralized repository with complete history</span>
+             </li>
+           </ul>
         </div>
       </div>
     </div>
@@ -198,38 +301,65 @@
   <!-- ========== FEATURES ========== -->
   <section class="project-section">
     <div class="container">
-      <h2 class="section-title"><i class="fas fa-cogs"></i> Fonctionnalités Clés</h2>
+             <h2 class="section-title"><i class="fas fa-cogs"></i> 
+         <span data-lang="fr">Fonctionnalités Clés</span>
+         <span data-lang="en">Key Features</span>
+       </h2>
       <div class="features-grid">
         <div class="feature-card">
           <div class="feature-image">
             <img src="assets/projects/optimisation-supply-chain/Présentation%20Dashboard.png" alt="Dashboard principal Power BI">
           </div>
-          <h3>Dashboard Pilotage Global</h3>
-          <p>Interface unifiée Power BI avec KPIs temps réel, visualisations interactives et drill-down par filiale/produit.</p>
+                     <h3>
+             <span data-lang="fr">Dashboard Pilotage Global</span>
+             <span data-lang="en">Global Management Dashboard</span>
+           </h3>
+           <p>
+             <span data-lang="fr">Interface unifiée Power BI avec KPIs temps réel, visualisations interactives et drill-down par filiale/produit.</span>
+             <span data-lang="en">Unified Power BI interface with real-time KPIs, interactive visualizations and drill-down by subsidiary/product.</span>
+           </p>
         </div>
         
         <div class="feature-card">
           <div class="feature-image">
             <img src="assets/projects/optimisation-supply-chain/Classification%20ABC.png" alt="Segmentation ABC/XYZ">
           </div>
-          <h3>Segmentation Intelligente ABC/XYZ</h3>
-          <p>Classification dynamique : ABC (rentabilité produits) et XYZ (variabilité demande) pour optimiser la stratégie stock.</p>
+                     <h3>
+             <span data-lang="fr">Segmentation Intelligente ABC/XYZ</span>
+             <span data-lang="en">Intelligent ABC/XYZ Segmentation</span>
+           </h3>
+           <p>
+             <span data-lang="fr">Classification dynamique : ABC (rentabilité produits) et XYZ (variabilité demande) pour optimiser la stratégie stock.</span>
+             <span data-lang="en">Dynamic classification: ABC (product profitability) and XYZ (demand variability) to optimize stock strategy.</span>
+           </p>
         </div>
         
         <div class="feature-card">
           <div class="feature-image">
             <img src="assets/projects/optimisation-supply-chain/Graphique%20par%20années.png" alt="Analytics temporelles">
           </div>
-          <h3>Analytics Temporelles Avancées</h3>
-          <p>Analyse des tendances par années, saisonnalité et patterns de demande pour affiner les prévisions.</p>
+                     <h3>
+             <span data-lang="fr">Analytics Temporelles Avancées</span>
+             <span data-lang="en">Advanced Temporal Analytics</span>
+           </h3>
+           <p>
+             <span data-lang="fr">Analyse des tendances par années, saisonnalité et patterns de demande pour affiner les prévisions.</span>
+             <span data-lang="en">Analysis of trends by years, seasonality and demand patterns to refine forecasts.</span>
+           </p>
         </div>
         
         <div class="feature-card">
           <div class="feature-image">
             <img src="assets/projects/optimisation-supply-chain/Extraction%20des%20historiques.png" alt="Historisation des données">
           </div>
-          <h3>Historisation & Traçabilité</h3>
-          <p>Système complet d'extraction et stockage des historiques avec référentiel Excel partagé et versionning.</p>
+                     <h3>
+             <span data-lang="fr">Historisation & Traçabilité</span>
+             <span data-lang="en">History & Traceability</span>
+           </h3>
+           <p>
+             <span data-lang="fr">Système complet d'extraction et stockage des historiques avec référentiel Excel partagé et versionning.</span>
+             <span data-lang="en">Complete system for extracting and storing history with shared Excel repository and versioning.</span>
+           </p>
         </div>
       </div>
     </div>
@@ -238,10 +368,16 @@
   <!-- ========== TECH STACK ========== -->
   <section class="project-section bg-alt">
     <div class="container">
-      <h2 class="section-title"><i class="fas fa-code"></i> Architecture Technique</h2>
+             <h2 class="section-title"><i class="fas fa-code"></i> 
+         <span data-lang="fr">Architecture Technique</span>
+         <span data-lang="en">Technical Architecture</span>
+       </h2>
       <div class="tech-architecture">
         <div class="tech-layer">
-          <h3>Collecte & Intégration</h3>
+                     <h3>
+             <span data-lang="fr">Collecte & Intégration</span>
+             <span data-lang="en">Data Collection & Integration</span>
+           </h3>
           <div class="tech-items">
             <div class="tech-item">
               <img src="assets/logos/kinaxis.png" alt="Kinaxis">
@@ -259,7 +395,10 @@
         </div>
         
         <div class="tech-layer">
-          <h3>Analyse & Visualisation</h3>
+                     <h3>
+             <span data-lang="fr">Analyse & Visualisation</span>
+             <span data-lang="en">Analysis & Visualization</span>
+           </h3>
           <div class="tech-items">
             <div class="tech-item">
               <img src="assets/logos/powerbi.png" alt="Power BI">
@@ -273,14 +412,35 @@
         </div>
         
         <div class="tech-layer">
-          <h3>Fonctionnalités Métier</h3>
+                     <h3>
+             <span data-lang="fr">Fonctionnalités Métier</span>
+             <span data-lang="en">Business Features</span>
+           </h3>
           <div class="tech-features">
-            <span class="feature-tag">Prévisions Intelligentes</span>
-            <span class="feature-tag">Segmentation ABC/XYZ</span>
-            <span class="feature-tag">KPIs Personnalisés</span>
-            <span class="feature-tag">Alertes Automatisées</span>
-            <span class="feature-tag">Reporting S&OP</span>
-            <span class="feature-tag">Traçabilité Complète</span>
+                         <span class="feature-tag">
+               <span data-lang="fr">Prévisions Intelligentes</span>
+               <span data-lang="en">Intelligent Forecasting</span>
+             </span>
+             <span class="feature-tag">
+               <span data-lang="fr">Segmentation ABC/XYZ</span>
+               <span data-lang="en">ABC/XYZ Segmentation</span>
+             </span>
+             <span class="feature-tag">
+               <span data-lang="fr">KPIs Personnalisés</span>
+               <span data-lang="en">Custom KPIs</span>
+             </span>
+             <span class="feature-tag">
+               <span data-lang="fr">Alertes Automatisées</span>
+               <span data-lang="en">Automated Alerts</span>
+             </span>
+             <span class="feature-tag">
+               <span data-lang="fr">Reporting S&OP</span>
+               <span data-lang="en">S&OP Reporting</span>
+             </span>
+             <span class="feature-tag">
+               <span data-lang="fr">Traçabilité Complète</span>
+               <span data-lang="en">Complete Traceability</span>
+             </span>
           </div>
         </div>
       </div>
@@ -290,75 +450,144 @@
   <!-- ========== RESULTS & IMPACT ========== -->
   <section class="project-section">
     <div class="container">
-      <h2 class="section-title"><i class="fas fa-chart-line"></i> Résultats & Impact</h2>
+             <h2 class="section-title"><i class="fas fa-chart-line"></i> 
+         <span data-lang="fr">Résultats & Impact</span>
+         <span data-lang="en">Results & Impact</span>
+       </h2>
       <div class="results-grid">
         <div class="result-card primary">
           <div class="result-icon">
             <i class="fas fa-brain"></i>
           </div>
-          <h3>Transformation Décisionnelle</h3>
-          <p>Forecasts transformés en véritable outil décisionnel stratégique avec données fiables et actionables</p>
+                     <h3>
+             <span data-lang="fr">Transformation Décisionnelle</span>
+             <span data-lang="en">Decision Transformation</span>
+           </h3>
+           <p>
+             <span data-lang="fr">Forecasts transformés en véritable outil décisionnel stratégique avec données fiables et actionables</span>
+             <span data-lang="en">Forecasts transformed into a true strategic decision-making tool with reliable and actionable data</span>
+           </p>
         </div>
         
         <div class="result-card success">
           <div class="result-icon">
             <i class="fas fa-tachometer-alt"></i>
           </div>
-          <h3>Réactivité S&OP</h3>
-          <p>Gain immédiat en réactivité du processus S&OP grâce aux alertes temps réel et visualisations instantanées</p>
+                     <h3>
+             <span data-lang="fr">Réactivité S&OP</span>
+             <span data-lang="en">S&OP Responsiveness</span>
+           </h3>
+           <p>
+             <span data-lang="fr">Gain immédiat en réactivité du processus S&OP grâce aux alertes temps réel et visualisations instantanées</span>
+             <span data-lang="en">Immediate gain in S&OP process responsiveness thanks to real-time alerts and instant visualizations</span>
+           </p>
         </div>
         
         <div class="result-card accent">
           <div class="result-icon">
             <i class="fas fa-robot"></i>
           </div>
-          <h3>Automatisation Totale</h3>
-          <p>Automatisation complète du reporting supply chain avec <strong>zéro retraitement manuel</strong></p>
+                     <h3>
+             <span data-lang="fr">Automatisation Totale</span>
+             <span data-lang="en">Total Automation</span>
+           </h3>
+                       <p>
+              <span data-lang="fr">Automatisation complète du reporting supply chain avec zéro retraitement manuel</span>
+              <span data-lang="en">Complete automation of supply chain reporting with zero manual reprocessing</span>
+            </p>
         </div>
       </div>
       
-      <div class="impact-summary">
-        <h3>🎯 Impact Organisationnel</h3>
-        <div class="impact-metrics">
-          <div class="metric">
-            <span class="metric-value">100%</span>
-            <span class="metric-label">Automatisation reporting</span>
-          </div>
-          <div class="metric">
-            <span class="metric-value">0</span>
-            <span class="metric-label">Retraitement manuel</span>
-          </div>
-          <div class="metric">
-            <span class="metric-value">Temps réel</span>
-            <span class="metric-label">Alertes ruptures</span>
-          </div>
-          <div class="metric">
-            <span class="metric-value">Multi-filiales</span>
-            <span class="metric-label">Visibilité globale</span>
-          </div>
-        </div>
-      </div>
+             <div class="impact-summary">
+         <h3>
+           <span data-lang="fr">🎯 Impact Organisationnel</span>
+           <span data-lang="en">🎯 Organizational Impact</span>
+         </h3>
+         <div class="impact-metrics">
+           <div class="metric">
+             <span class="metric-value">100%</span>
+             <span class="metric-label">
+               <span data-lang="fr">Automatisation reporting</span>
+               <span data-lang="en">Reporting Automation</span>
+             </span>
+             <span class="metric-desc">
+               <span data-lang="fr">Tous les rapports supply chain sont générés automatiquement</span>
+               <span data-lang="en">All supply chain reports are generated automatically</span>
+             </span>
+           </div>
+           <div class="metric">
+             <span class="metric-value">0</span>
+             <span class="metric-label">
+               <span data-lang="fr">Retraitement manuel</span>
+               <span data-lang="en">Manual Processing</span>
+             </span>
+             <span class="metric-desc">
+               <span data-lang="fr">Aucune intervention manuelle requise</span>
+               <span data-lang="en">No manual intervention required</span>
+             </span>
+           </div>
+           <div class="metric">
+             <span class="metric-value">
+               <span data-lang="fr">Temps réel</span>
+               <span data-lang="en">Real-time</span>
+             </span>
+             <span class="metric-label">
+               <span data-lang="fr">Alertes ruptures</span>
+               <span data-lang="en">Stockout Alerts</span>
+             </span>
+             <span class="metric-desc">
+               <span data-lang="fr">Notifications instantanées des risques de rupture</span>
+               <span data-lang="en">Instant notifications of stockout risks</span>
+             </span>
+           </div>
+           <div class="metric">
+             <span class="metric-value">Multi</span>
+             <span class="metric-label">
+               <span data-lang="fr">Multi-filiales</span>
+               <span data-lang="en">Multi-subsidiary</span>
+             </span>
+             <span class="metric-desc">
+               <span data-lang="fr">Surveillance centralisée de toutes les filiales</span>
+               <span data-lang="en">Centralized monitoring of all subsidiaries</span>
+             </span>
+           </div>
+         </div>
+       </div>
     </div>
   </section>
+
+    <!-- Back to Top Button -->
+                   <button id="backToTop" class="back-to-top" aria-label="Retour en haut de la page">
+        <i class="fas fa-arrow-up"></i>
+      </button>
 
   <!-- ========== NAVIGATION PROJETS ========== -->
   <section class="project-navigation">
     <div class="container">
       <div class="nav-projects">
-        <a href="chelonia.html" class="nav-btn">
-          <i class="fas fa-arrow-left"></i> Projet précédent
-        </a>
-        <div class="nav-center">
-          <a href="index.html#projects" class="nav-btn">
-            <i class="fas fa-th-large"></i> Tous les projets
-          </a>
-        </div>
-        <div class="nav-next">
-          <span class="next-label">Projet suivant :</span>
-          <a href="extraction-intelligente.html" class="nav-btn primary">
-            Extraction Intelligente <i class="fas fa-arrow-right"></i>
-          </a>
-        </div>
+                 <a href="chelonia.html" class="nav-btn">
+           <i class="fas fa-arrow-left"></i> 
+           <span data-lang="fr">Projet précédent</span>
+           <span data-lang="en">Previous Project</span>
+         </a>
+         <div class="nav-center">
+           <a href="index.html#projects" class="nav-btn">
+             <i class="fas fa-th-large"></i> 
+             <span data-lang="fr">Tous les projets</span>
+             <span data-lang="en">All Projects</span>
+           </a>
+         </div>
+         <div class="nav-next">
+           <span class="next-label">
+             <span data-lang="fr">Projet suivant :</span>
+             <span data-lang="en">Next Project:</span>
+           </span>
+           <a href="extraction-intelligente.html" class="nav-btn primary">
+             <span data-lang="fr">Extraction Intelligente</span>
+             <span data-lang="en">Intelligent Extraction</span>
+             <i class="fas fa-arrow-right"></i>
+           </a>
+         </div>
       </div>
     </div>
   </section>
@@ -418,6 +647,33 @@
       // Check for saved language preference
       const savedLang = localStorage.getItem('preferred-language');
       if (savedLang && savedLang !== 'fr') {
+        switchLanguage(savedLang);
+      }
+    });
+  </script>
+  <!-- Scripts -->
+  <script src="script.js"></script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const languageSelect = document.getElementById('languageSelect');
+      const body = document.body;
+
+      function switchLanguage(lang) {
+        body.className = `lang-${lang}`;
+        document.documentElement.lang = lang;
+        localStorage.setItem('preferred-language', lang);
+      }
+
+      // Add change event listener to select
+      languageSelect.addEventListener('change', function() {
+        const selectedLang = this.value;
+        switchLanguage(selectedLang);
+      });
+
+      const savedLang = localStorage.getItem('preferred-language');
+      if (savedLang && savedLang !== 'fr') {
+        languageSelect.value = savedLang;
         switchLanguage(savedLang);
       }
     });

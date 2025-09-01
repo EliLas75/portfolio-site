@@ -21,6 +21,8 @@ body {
   --bg-light: #ffffff;
   --bg-alt: #f6f6f9;
   --dark: #1e293b;
+  --text: #334155;
+  --highlight-rgb: 15, 118, 110;
 }
 
 /* ===================== */
@@ -921,6 +923,21 @@ body {
   pointer-events: auto;
 }
 
+
+
+/* ===================== */
+/*    SECTION TITLES     */
+/* ===================== */
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.section-title i {
+  flex-shrink: 0;
+}
+
 /* ===================== */
 /*      PROJECTS         */
 /* ===================== */
@@ -1375,6 +1392,32 @@ body {
   font-size: 0.9rem;
   font-weight: 600;
   border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.tech-badge:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.feature-badge {
+  background-color: rgba(15, 118, 110, 0.1);
+  color: var(--accent);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border: 1px solid rgba(15, 118, 110, 0.2);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.feature-badge:hover {
+  background-color: rgba(15, 118, 110, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(15, 118, 110, 0.3);
+  border-color: rgba(15, 118, 110, 0.4);
 }
 
 /* Sections projets */
@@ -1596,6 +1639,15 @@ body {
   font-size: 0.85rem;
   font-weight: 600;
   border: 1px solid rgba(15, 118, 110, 0.2);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.feature-tag:hover {
+  background-color: rgba(15, 118, 110, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(15, 118, 110, 0.3);
+  border-color: rgba(15, 118, 110, 0.4);
 }
 
 /* Timeline */
@@ -2032,6 +2084,45 @@ body {
   font-size: 20px;
   margin: 5px 0;
   opacity: 0.6;
+}
+
+/* Key Metrics */
+.key-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+  margin: 30px 0;
+}
+
+.key-metrics .metric {
+  text-align: center;
+  padding: 25px;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(15, 118, 110, 0.1);
+}
+
+.key-metrics .metric:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  border-color: rgba(15, 118, 110, 0.2);
+}
+
+.key-metrics .metric-number {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+.key-metrics .metric-label {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--dark);
+  font-weight: 600;
 }
 
 /* Results Showcase */

@@ -1,21 +1,13 @@
-
-
-
-
-
-
-
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <!-- SEO Meta Tags -->
   <title>Eliesse Laslah - Data Analyst & BI Developer | Portfolio</title>
-  <meta name="description" content="Data Analyst specialized in Power BI, Python and automation. Discover my supply chain projects, interactive dashboards and innovative data solutions.">
-  <meta name="keywords" content="Data Analyst, Power BI, Python, Supply Chain, Dashboard, BI Developer, Automation, Eliesse Laslah">
+  <meta name="description" content="Data Analyst spécialisé en Power BI, Python et automatisation. Découvrez mes projets supply chain, tableaux de bord interactifs et solutions innovantes.">
+  <meta name="keywords" content="Data Analyst, Power BI, Python, Supply Chain, Dashboard, BI Developer, Automatisation, Eliesse Laslah">
   <meta name="author" content="Eliesse Laslah">
   <meta name="robots" content="index, follow">
   
@@ -23,14 +15,14 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://elilas75.github.io/portfolio-site/">
   <meta property="og:title" content="Eliesse Laslah - Data Analyst & BI Developer">
-  <meta property="og:description" content="Data Analyst specialized in Power BI, Python and automation. Discover my supply chain projects, interactive dashboards and innovative data solutions.">
+  <meta property="og:description" content="Data Analyst spécialisé en Power BI, Python et automatisation. Découvrez mes projets supply chain, tableaux de bord interactifs et solutions innovantes.">
   <meta property="og:image" content="https://elilas75.github.io/portfolio-site/assets/CV%20photo.jpg">
   
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:url" content="https://elilas75.github.io/portfolio-site/">
   <meta property="twitter:title" content="Eliesse Laslah - Data Analyst & BI Developer">
-  <meta property="twitter:description" content="Data Analyst specialized in Power BI, Python and automation. Discover my supply chain projects, interactive dashboards and innovative data solutions.">
+  <meta property="twitter:description" content="Data Analyst spécialisé en Power BI, Python et automatisation. Découvrez mes projets supply chain, tableaux de bord interactifs et solutions innovantes.">
   <meta property="twitter:image" content="https://elilas75.github.io/portfolio-site/assets/CV%20photo.jpg">
   
   <!-- Favicon -->
@@ -52,7 +44,7 @@
       margin-left: auto;
     }
     
-    .lang-btn {
+    .lang-select {
       background: var(--bg-alt);
       border: 2px solid var(--highlight);
       color: var(--text);
@@ -62,31 +54,48 @@
       transition: all 0.3s ease;
       font-weight: 600;
       font-size: 14px;
+      outline: none;
     }
     
-    .lang-btn.active {
-      background: var(--highlight);
-      color: white;
-    }
-    
-    .lang-btn:hover {
+    .lang-select:hover {
       transform: translateY(-2px);
       box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     }
     
+    .lang-select:focus {
+      border-color: var(--highlight);
+      box-shadow: 0 0 0 3px rgba(var(--highlight-rgb), 0.1);
+    }
+    
+    /* Par défaut, le contenu français est visible, l'anglais caché */
     [data-lang="en"] {
       display: none;
     }
     
+    /* Quand on est en mode français, cacher l'anglais */
     .lang-fr [data-lang="en"] {
       display: none;
     }
     
+    /* Quand on est en mode anglais, cacher le français et montrer l'anglais */
     .lang-en [data-lang="fr"] {
       display: none;
     }
     
     .lang-en [data-lang="en"] {
+      display: block;
+    }
+    
+    /* Pour les éléments inline, utiliser inline-block au lieu de block */
+    .lang-en [data-lang="en"] {
+      display: inline-block;
+    }
+    
+    /* Pour les paragraphes et divs, utiliser block */
+    .lang-en p[data-lang="en"],
+    .lang-en div[data-lang="en"],
+    .lang-en h2[data-lang="en"],
+    .lang-en h3[data-lang="en"] {
       display: block;
     }
     
@@ -110,7 +119,7 @@
     "@type": "Person",
     "name": "Eliesse Laslah",
     "jobTitle": "Data Analyst & BI Developer",
-    "description": "Data Analyst specialized in Power BI, Python and supply chain automation",
+    "description": "Data Analyst spécialisé en Power BI, Python et automatisation supply chain",
     "url": "https://elilas75.github.io/portfolio-site/",
     "image": "https://elilas75.github.io/portfolio-site/assets/CV%20photo.jpg",
     "email": "eliesse.laslah@gmail.com",
@@ -131,45 +140,32 @@
   }
   </script>
 </head>
-<body class="lang-en">
+<body class="lang-fr">
 
   <!-- ========== NAVIGATION STICKY GLASS EFFECT ========== -->
   <nav class="navbar">
     <div class="container nav-container">
       <!-- Menu burger (mobile uniquement) -->
-      <button class="mobile-menu-toggle" aria-label="Navigation menu" aria-expanded="false">
+      <button class="mobile-menu-toggle" aria-label="Menu de navigation" aria-expanded="false">
         <span></span>
         <span></span>
         <span></span>
       </button>
       
       <ul class="nav-links">
-        <li><a href="#top">
-          <span data-lang="fr">Accueil</span>
-          <span data-lang="en">Home</span>
-        </a></li>
-        <li><a href="#about">
-          <span data-lang="fr">À propos</span>
-          <span data-lang="en">About</span>
-        </a></li>
-        <li><a href="#skills">
-          <span data-lang="fr">Compétences</span>
-          <span data-lang="en">Skills</span>
-        </a></li>
-        <li><a href="#projects">
-          <span data-lang="fr">Projets</span>
-          <span data-lang="en">Projects</span>
-        </a></li>
-        <li><a href="#contact">
-          <span data-lang="fr">Contact</span>
-          <span data-lang="en">Contact</span>
-        </a></li>
+        <li><a href="#top">Accueil</a></li>
+        <li><a href="#about">À propos</a></li>
+        <li><a href="#skills">Compétences</a></li>
+        <li><a href="#projects">Projets</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
       
       <!-- Language Switcher -->
       <div class="language-switcher">
-        <button class="lang-btn" data-lang="fr">🇫🇷 FR</button>
-        <button class="lang-btn active" data-lang="en">🇺🇸 EN</button>
+        <select id="languageSelect" class="lang-select">
+          <option value="fr" selected>🇫🇷 Français</option>
+          <option value="en">🇺🇸 English</option>
+        </select>
       </div>
     </div>
   </nav>
@@ -385,37 +381,22 @@
           <div class="pipeline-content">
             <div class="pipeline-step">
               <div class="step-circle email"></div>
-              <div class="step-label">
-                <span data-lang="fr">Extraire</span>
-                <span data-lang="en">Extract</span>
-              </div>
+              <div class="step-label">Extraire</div>
             </div>
             <div class="pipeline-arrow">→</div>
             <div class="pipeline-step">
               <div class="step-circle process"></div>
-              <div class="step-label">
-                <span data-lang="fr">Traiter</span>
-                <span data-lang="en">Process</span>
-              </div>
+              <div class="step-label">Traiter</div>
             </div>
             <div class="pipeline-arrow">→</div>
             <div class="pipeline-step">
               <div class="step-circle output"></div>
-              <div class="step-label">
-                <span data-lang="fr">Sortie</span>
-                <span data-lang="en">Output</span>
-              </div>
+              <div class="step-label">Sortie</div>
             </div>
           </div>
           <div class="pipeline-stats">
-            <span class="stat">
-              <span data-lang="fr">+500 fichiers</span>
-              <span data-lang="en">+500 files</span>
-            </span>
-            <span class="stat">
-              <span data-lang="fr">0% manuel</span>
-              <span data-lang="en">0% manual</span>
-            </span>
+            <span class="stat">+500 fichiers</span>
+            <span class="stat">0% manuel</span>
           </div>
         </div>
         </a>
@@ -466,10 +447,7 @@
           <a href="mailto:eliesse.laslah@gmail.com" class="contact-method">
             <i class="fas fa-envelope"></i>
             <div>
-              <h4>
-                <span data-lang="fr">Email</span>
-                <span data-lang="en">Email</span>
-              </h4>
+              <h4>Email</h4>
               <span>eliesse.laslah@gmail.com</span>
             </div>
           </a>
@@ -477,10 +455,7 @@
           <a href="https://www.linkedin.com/in/e-laslah/" target="_blank" class="contact-method">
             <i class="fab fa-linkedin"></i>
             <div>
-              <h4>
-                <span data-lang="fr">LinkedIn</span>
-                <span data-lang="en">LinkedIn</span>
-              </h4>
+              <h4>LinkedIn</h4>
               <span>e-laslah</span>
             </div>
           </a>
@@ -488,10 +463,7 @@
           <a href="https://github.com/EliLas75" target="_blank" class="contact-method">
             <i class="fab fa-github"></i>
             <div>
-              <h4>
-                <span data-lang="fr">GitHub</span>
-                <span data-lang="en">GitHub</span>
-              </h4>
+              <h4>GitHub</h4>
               <span>EliLas75</span>
             </div>
           </a>
@@ -499,48 +471,47 @@
       </div>
       
       <div class="contact-form">
-        <!-- Option A: Google Form intégré -->
-        <div class="google-form-container">
-          <iframe 
-            src="https://docs.google.com/forms/d/e/1FAIpQLSdZsx9aTs-teK7y9iutfaLWgXGrlJQq4fnWd4JF0-tPCg1MCw/viewform?embedded=true" 
-            width="100%" 
-            height="600" 
-            frameborder="0" 
-            marginheight="0" 
-            marginwidth="0">
-            Chargement…
-          </iframe>
-        </div>
-        
-        <!-- Option B: Formulaire custom qui poste vers Google Form -->
-        <form class="form" id="contactForm" action="https://docs.google.com/forms/d/e/1FAIpQLSdZsx9aTs-teK7y9iutfaLWgXGrlJQq4fnWd4JF0-tPCg1MCw/formResponse" method="POST" target="hidden_iframe">
+        <form id="contactForm" action="https://docs.google.com/forms/d/e/1FAIpQLSdZsx9aTs-teK7y9iutfaLWgXGrlJQq4fnWd4JF0-tPCg1MCw/formResponse" method="POST" target="hidden_iframe">
           <div class="form-group">
-            <label for="name">Name *</label>
-            <input type="text" id="name" name="entry.1270326900" required>
+            <label for="entry.1270326900">
+              <span data-lang="fr">Nom complet *</span>
+              <span data-lang="en">Full Name *</span>
+            </label>
+            <input type="text" id="entry.1270326900" name="entry.1270326900" required>
           </div>
           
           <div class="form-group">
-            <label for="email">Email *</label>
-            <input type="email" id="email" name="entry.908254638" required>
+            <label for="entry.908254638">
+              <span data-lang="fr">Email *</span>
+              <span data-lang="en">Email *</span>
+            </label>
+            <input type="email" id="entry.908254638" name="entry.908254638" required>
           </div>
           
           <div class="form-group">
-            <label for="subject">Subject</label>
-            <input type="text" id="subject" name="entry.372960597" placeholder="Ex: Collaboration on a data project">
+            <label for="entry.372960597">
+              <span data-lang="fr">Sujet *</span>
+              <span data-lang="en">Subject *</span>
+            </label>
+            <input type="text" id="entry.372960597" name="entry.372960597" required>
           </div>
           
           <div class="form-group">
-            <label for="message">Message *</label>
-            <textarea id="message" name="entry.2132059708" rows="6" required placeholder="Describe your project or needs..."></textarea>
+            <label for="entry.2132059708">
+              <span data-lang="fr">Message *</span>
+              <span data-lang="en">Message *</span>
+            </label>
+            <textarea id="entry.2132059708" name="entry.2132059708" rows="5" required></textarea>
           </div>
           
-          <button type="submit" class="btn primary" id="submitBtn">
-            <i class="fas fa-paper-plane"></i>
-            Send Message
+          <button type="submit" id="submitBtn" class="btn primary">
+            <i class="fas fa-paper-plane"></i> 
+            <span data-lang="fr">Envoyer le message</span>
+            <span data-lang="en">Send Message</span>
           </button>
         </form>
         
-        <!-- iframe caché pour éviter la redirection -->
+        <!-- Iframe caché pour la soumission -->
         <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
       </div>
     </div>
@@ -556,7 +527,7 @@
         <a href="https://github.com/EliLas75" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
         <a href="https://www.linkedin.com/in/e-laslah/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
         <a href="mailto:eliesse.laslah@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
-        <a href="assets/Eliesse.pdf" download aria-label="Resume PDF"><i class="fas fa-file-download"></i></a>
+        <a href="assets/Eliesse.pdf" download aria-label="CV PDF"><i class="fas fa-file-download"></i></a>
       </div>
     </div>
     <p class="footer-copy">
@@ -564,11 +535,9 @@
       <span data-lang="en">© 2025 – All rights reserved.</span>
     </p>
     <!-- Bouton flottant vers le haut -->
-<a href="#top" class="back-to-top" aria-label="Back to top">
-  <span data-lang="fr" style="display: none;">Retour en haut</span>
-  <span data-lang="en">Back to top</span>
-  <i class="fas fa-arrow-up"></i>
-</a>
+                <a href="#top" class="back-to-top" aria-label="Retour en haut">
+                  <i class="fas fa-arrow-up"></i>
+                </a>
 
   </div>
 </footer>
@@ -590,7 +559,7 @@ document.addEventListener('DOMContentLoaded', function() {
       navLinks.classList.toggle('active');
       
       // Mise à jour aria-expanded
-      mobileMenuToggle.setAttribute('aria-expanded', !isActive);
+      mobileMenuToggle.classList.toggle('aria-expanded', !isActive);
     });
     
     // Fermer le menu quand on clique sur un lien
@@ -598,7 +567,7 @@ document.addEventListener('DOMContentLoaded', function() {
       link.addEventListener('click', function() {
         mobileMenuToggle.classList.remove('active');
         navLinks.classList.remove('active');
-        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+        mobileMenuToggle.classList.remove('aria-expanded');
       });
     });
     
@@ -607,7 +576,7 @@ document.addEventListener('DOMContentLoaded', function() {
       if (e.key === 'Escape' && navLinks.classList.contains('active')) {
         mobileMenuToggle.classList.remove('active');
         navLinks.classList.remove('active');
-        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+        mobileMenuToggle.classList.remove('aria-expanded');
       }
     });
   }
@@ -677,21 +646,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Language Switcher Script
 document.addEventListener('DOMContentLoaded', function() {
-  const langBtns = document.querySelectorAll('.lang-btn');
+  const languageSelect = document.getElementById('languageSelect');
   const body = document.body;
   
   // Language switching functionality
   function switchLanguage(lang) {
     // Update body class
     body.className = `lang-${lang}`;
-    
-    // Update active button state
-    langBtns.forEach(btn => {
-      btn.classList.remove('active');
-      if (btn.getAttribute('data-lang') === lang) {
-        btn.classList.add('active');
-      }
-    });
     
     // Update HTML lang attribute
     document.documentElement.lang = lang;
@@ -700,17 +661,16 @@ document.addEventListener('DOMContentLoaded', function() {
     localStorage.setItem('preferred-language', lang);
   }
   
-  // Add click event listeners
-  langBtns.forEach(btn => {
-    btn.addEventListener('click', function() {
-      const lang = this.getAttribute('data-lang');
-      switchLanguage(lang);
-    });
+  // Add change event listener to select
+  languageSelect.addEventListener('change', function() {
+    const selectedLang = this.value;
+    switchLanguage(selectedLang);
   });
   
   // Check for saved language preference
   const savedLang = localStorage.getItem('preferred-language');
-  if (savedLang && savedLang !== 'en') {
+  if (savedLang && savedLang !== 'fr') {
+    languageSelect.value = savedLang;
     switchLanguage(savedLang);
   }
 });

@@ -39,15 +39,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // ========== SCROLL TO TOP BUTTON ==========
 document.addEventListener('DOMContentLoaded', function() {
-  const scrollBtn = document.querySelector('.back-to-top');
+  const scrollBtn = document.querySelector('.back-to-top') || document.getElementById('backToTop');
 
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 400) {
-      scrollBtn.classList.add('show');
-    } else {
-      scrollBtn.classList.remove('show');
-    }
-  });
+  if (scrollBtn) {
+    // Ajouter l'événement de clic pour faire défiler vers le haut
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // Afficher/masquer le bouton selon le scroll
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 400) {
+        scrollBtn.classList.add('show');
+      } else {
+        scrollBtn.classList.remove('show');
+      }
+    });
+  }
 });
 
 // ========== SMOOTH SCROLL ==========

@@ -20,7 +20,7 @@
       margin-left: auto;
     }
     
-    .lang-btn {
+    .lang-select {
       background: var(--bg-alt);
       border: 2px solid var(--highlight);
       color: var(--text);
@@ -29,32 +29,59 @@
       cursor: pointer;
       transition: all 0.3s ease;
       font-weight: 600;
+      font-size: 14px;
+      outline: none;
     }
     
-    .lang-btn.active {
-      background: var(--highlight);
-      color: white;
-    }
-    
-    .lang-btn:hover {
+    .lang-select:hover {
       transform: translateY(-2px);
       box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     }
     
+    .lang-select:focus {
+      border-color: var(--highlight);
+      box-shadow: 0 0 0 3px rgba(0,0,0,0.1);
+    }
+    
+    /* Par défaut, le contenu français est visible, l'anglais caché */
     [data-lang="en"] {
       display: none;
     }
     
+    /* Quand on est en mode français, cacher l'anglais */
     .lang-fr [data-lang="en"] {
       display: none;
     }
     
+    /* Quand on est en mode anglais, cacher le français et montrer l'anglais */
     .lang-en [data-lang="fr"] {
       display: none;
     }
     
     .lang-en [data-lang="en"] {
       display: block;
+    }
+    
+    /* Pour les éléments inline, utiliser inline-block au lieu de block */
+    .lang-en [data-lang="en"] {
+      display: inline-block;
+    }
+    
+    /* Pour les paragraphes et divs, utiliser block */
+    .lang-en p[data-lang="en"],
+    .lang-en div[data-lang="en"],
+    .lang-en h2[data-lang="en"],
+    .lang-en h3[data-lang="en"] {
+      display: block;
+    }
+    
+    /* Responsive language switcher */
+    @media (max-width: 768px) {
+      .language-switcher {
+        margin-left: 0;
+        margin-top: 15px;
+        justify-content: center;
+      }
     }
   </style>
 </head>
@@ -72,8 +99,10 @@
       
       <!-- Language Switcher -->
       <div class="language-switcher">
-        <button class="lang-btn active" data-lang="fr">🇫🇷 FR</button>
-        <button class="lang-btn" data-lang="en">🇺🇸 EN</button>
+        <select id="languageSelect" class="lang-select">
+          <option value="fr" selected>🇫🇷 Français</option>
+          <option value="en">🇺🇸 English</option>
+        </select>
       </div>
     </div>
   </nav>
@@ -138,21 +167,7 @@
             </span>
           </p>
           
-          <!-- English-only metrics -->
-          <div class="key-metrics" data-lang="en">
-            <div class="metric">
-              <span class="metric-number">95%</span>
-              <span class="metric-label">Process Automation</span>
-            </div>
-            <div class="metric">
-              <span class="metric-number">Real-time</span>
-              <span class="metric-label">Data Processing</span>
-            </div>
-            <div class="metric">
-              <span class="metric-number">24/7</span>
-              <span class="metric-label">Monitoring</span>
-            </div>
-          </div>
+          
         </div>
         <div class="project-image">
           <img src="assets/projects/Dashboard%20vue%20global.png" alt="Dashboard principal Chelonia">
@@ -403,67 +418,123 @@
         <span data-lang="fr">État du Développement</span>
         <span data-lang="en">Development Roadmap</span>
       </h2>
-      <div class="status-timeline">
-        <div class="timeline-item completed">
-          <div class="timeline-icon"><i class="fas fa-check"></i></div>
-          <div class="timeline-content">
-            <h3>Phase 1 : Conception & Architecture</h3>
-            <p>Définition des besoins, maquettes UI/UX, architecture technique</p>
-            <span class="timeline-status">Terminé</span>
-          </div>
-        </div>
-        
-        <div class="timeline-item completed">
-          <div class="timeline-icon"><i class="fas fa-check"></i></div>
-          <div class="timeline-content">
-            <h3>Phase 2 : Développement Core</h3>
-            <p>Interface utilisateur, authentification, modules de base</p>
-            <span class="timeline-status">Terminé</span>
-          </div>
-        </div>
-        
-        <div class="timeline-item in-progress">
-          <div class="timeline-icon"><i class="fas fa-cog fa-spin"></i></div>
-          <div class="timeline-content">
-            <h3>Phase 3 : Fonctionnalités Avancées</h3>
-            <p>IA prédictive, optimisations performance, tests approfondis</p>
-            <span class="timeline-status">En cours</span>
-          </div>
-        </div>
-        
-        <div class="timeline-item pending">
-          <div class="timeline-icon"><i class="fas fa-clock"></i></div>
-          <div class="timeline-content">
-            <h3>Phase 4 : Déploiement</h3>
-            <p>Tests finaux, documentation, mise en production</p>
-            <span class="timeline-status">À venir</span>
-          </div>
-        </div>
-      </div>
-      
-      <div class="coming-soon-cta">
-        <h3>🚀 Lancement prévu : Q2 2025</h3>
-        <p>Une démonstration complète sera disponible prochainement. En attendant, n'hésitez pas à me contacter pour plus de détails sur ce projet.</p>
-        <a href="mailto:eliesse.laslah@gmail.com" class="btn primary">
-          <i class="fas fa-envelope"></i> Me contacter
-        </a>
-      </div>
+             <div class="status-timeline">
+         <div class="timeline-item completed">
+           <div class="timeline-icon"><i class="fas fa-check"></i></div>
+           <div class="timeline-content">
+             <h3>
+               <span data-lang="fr">Phase 1 : Conception & Architecture</span>
+               <span data-lang="en">Phase 1: Design & Architecture</span>
+             </h3>
+             <p>
+               <span data-lang="fr">Définition des besoins, maquettes UI/UX, architecture technique</span>
+               <span data-lang="en">Requirements definition, UI/UX mockups, technical architecture</span>
+             </p>
+             <span class="timeline-status">
+               <span data-lang="fr">Terminé</span>
+               <span data-lang="en">Completed</span>
+             </span>
+           </div>
+         </div>
+         
+         <div class="timeline-item completed">
+           <div class="timeline-icon"><i class="fas fa-check"></i></div>
+           <div class="timeline-content">
+             <h3>
+               <span data-lang="fr">Phase 2 : Développement Core</span>
+               <span data-lang="en">Phase 2: Core Development</span>
+             </h3>
+             <p>
+               <span data-lang="fr">Interface utilisateur, authentification, modules de base</span>
+               <span data-lang="en">User interface, authentication, core modules</span>
+             </p>
+             <span class="timeline-status">
+               <span data-lang="fr">Terminé</span>
+               <span data-lang="en">Completed</span>
+             </span>
+           </div>
+         </div>
+         
+         <div class="timeline-item in-progress">
+           <div class="timeline-icon"><i class="fas fa-cog fa-spin"></i></div>
+           <div class="timeline-content">
+             <h3>
+               <span data-lang="fr">Phase 3 : Fonctionnalités Avancées</span>
+               <span data-lang="en">Phase 3: Advanced Features</span>
+             </h3>
+             <p>
+               <span data-lang="fr">IA prédictive, optimisations performance, tests approfondis</span>
+               <span data-lang="en">Predictive AI, performance optimizations, comprehensive testing</span>
+             </p>
+             <span class="timeline-status">
+               <span data-lang="fr">En cours</span>
+               <span data-lang="en">In Progress</span>
+             </span>
+           </div>
+         </div>
+         
+         <div class="timeline-item pending">
+           <div class="timeline-icon"><i class="fas fa-clock"></i></div>
+           <div class="timeline-content">
+             <h3>
+               <span data-lang="fr">Phase 4 : Déploiement</span>
+               <span data-lang="en">Phase 4: Deployment</span>
+             </h3>
+             <p>
+               <span data-lang="fr">Tests finaux, documentation, mise en production</span>
+               <span data-lang="en">Final testing, documentation, production deployment</span>
+             </p>
+             <span class="timeline-status">
+               <span data-lang="fr">À venir</span>
+               <span data-lang="en">Coming Soon</span>
+             </span>
+           </div>
+         </div>
+       </div>
+       
+       <div class="coming-soon-cta">
+         <h3>
+           <span data-lang="fr">🚀 Lancement prévu : Q2 2026</span>
+           <span data-lang="en">🚀 Expected Launch: Q2 2026</span>
+         </h3>
+         <p>
+           <span data-lang="fr">Une démonstration complète sera disponible prochainement. En attendant, n'hésitez pas à me contacter pour plus de détails sur ce projet.</span>
+           <span data-lang="en">A complete demonstration will be available soon. In the meantime, feel free to contact me for more details about this project.</span>
+         </p>
+         <a href="mailto:eliesse.laslah@gmail.com" class="btn primary">
+           <i class="fas fa-envelope"></i> 
+           <span data-lang="fr">Me contacter</span>
+           <span data-lang="en">Contact Me</span>
+         </a>
+       </div>
     </div>
   </section>
+
+    <!-- Back to Top Button -->
+                             <button id="backToTop" class="back-to-top" aria-label="Retour en haut de la page">
+                      <i class="fas fa-arrow-up"></i>
+                    </button>
 
   <!-- ========== NAVIGATION PROJETS ========== -->
   <section class="project-navigation">
     <div class="container">
       <div class="nav-projects">
-        <a href="index.html#projects" class="nav-btn">
-          <i class="fas fa-arrow-left"></i> Retour aux projets
-        </a>
-        <div class="nav-next">
-          <span class="next-label">Projet suivant :</span>
-          <a href="optimisation-supply-chain.html" class="nav-btn primary">
-            Optimisation Supply Chain <i class="fas fa-arrow-right"></i>
-          </a>
-        </div>
+                 <a href="index.html#projects" class="nav-btn">
+           <i class="fas fa-arrow-left"></i> 
+           <span data-lang="fr">Retour aux projets</span>
+           <span data-lang="en">Back to Projects</span>
+         </a>
+         <div class="nav-next">
+           <span class="next-label">
+             <span data-lang="fr">Projet suivant :</span>
+             <span data-lang="en">Next Project:</span>
+           </span>
+           <a href="optimisation-supply-chain.html" class="nav-btn primary">
+             <span data-lang="fr">Optimisation Supply Chain</span>
+             <span data-lang="en">Supply Chain Optimization</span>
+             <i class="fas fa-arrow-right"></i>
+           </a>
+         </div>
       </div>
     </div>
   </section>
@@ -484,48 +555,34 @@
     </div>
   </footer>
 
+
+  <!-- Scripts -->
   <script src="script.js"></script>
   
-  <!-- Language Switcher Script -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      const langBtns = document.querySelectorAll('.lang-btn');
+      const languageSelect = document.getElementById('languageSelect');
       const body = document.body;
-      
-      // Language switching functionality
+
       function switchLanguage(lang) {
-        // Update body class
         body.className = `lang-${lang}`;
-        
-        // Update active button state
-        langBtns.forEach(btn => {
-          btn.classList.remove('active');
-          if (btn.getAttribute('data-lang') === lang) {
-            btn.classList.add('active');
-          }
-        });
-        
-        // Update HTML lang attribute
         document.documentElement.lang = lang;
-        
-        // Store preference in localStorage
         localStorage.setItem('preferred-language', lang);
       }
-      
-      // Add click event listeners
-      langBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-          const lang = this.getAttribute('data-lang');
-          switchLanguage(lang);
-        });
+
+      // Add change event listener to select
+      languageSelect.addEventListener('change', function() {
+        const selectedLang = this.value;
+        switchLanguage(selectedLang);
       });
-      
-      // Check for saved language preference
+
       const savedLang = localStorage.getItem('preferred-language');
       if (savedLang && savedLang !== 'fr') {
+        languageSelect.value = savedLang;
         switchLanguage(savedLang);
       }
     });
   </script>
 </body>
 </html>
+

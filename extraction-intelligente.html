@@ -20,7 +20,7 @@
       margin-left: auto;
     }
     
-    .lang-btn {
+    .lang-select {
       background: var(--bg-alt);
       border: 2px solid var(--highlight);
       color: var(--text);
@@ -29,16 +29,18 @@
       cursor: pointer;
       transition: all 0.3s ease;
       font-weight: 600;
+      font-size: 14px;
+      outline: none;
     }
     
-    .lang-btn.active {
-      background: var(--highlight);
-      color: white;
-    }
-    
-    .lang-btn:hover {
+    .lang-select:hover {
       transform: translateY(-2px);
       box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    
+    .lang-select:focus {
+      border-color: var(--highlight);
+      box-shadow: 0 0 0 3px rgba(0,0,0,0.1);
     }
     
     [data-lang="en"] {
@@ -72,8 +74,10 @@
       
       <!-- Language Switcher -->
       <div class="language-switcher">
-        <button class="lang-btn active" data-lang="fr">🇫🇷 FR</button>
-        <button class="lang-btn" data-lang="en">🇺🇸 EN</button>
+        <select id="languageSelect" class="lang-select">
+          <option value="fr" selected>🇫🇷 Français</option>
+          <option value="en">🇺🇸 English</option>
+        </select>
       </div>
     </div>
   </nav>
@@ -82,11 +86,13 @@
   <section class="project-hero">
     <div class="container">
       <div class="project-header">
-        <div class="project-status">
-          <span class="status-badge completed">
-            <i class="fas fa-check-circle"></i> Terminé
-          </span>
-        </div>
+                 <div class="project-status">
+           <span class="status-badge completed">
+             <i class="fas fa-check-circle"></i> 
+             <span data-lang="fr">Terminé</span>
+             <span data-lang="en">Completed</span>
+           </span>
+         </div>
         <h1>
           <span data-lang="fr">Extraction Intelligente</span>
           <span data-lang="en">Intelligent Data Extraction & Automation</span>
@@ -134,50 +140,73 @@
   <!-- ========== PROJECT OVERVIEW ========== -->
   <section class="project-section">
     <div class="container">
-      <h2 class="section-title"><i class="fas fa-bullseye"></i> Vue d'ensemble</h2>
+             <h2 class="section-title"><i class="fas fa-bullseye"></i> 
+         <span data-lang="fr">Vue d'ensemble</span>
+         <span data-lang="en">Project Overview</span>
+       </h2>
       <div class="content-grid">
         <div class="content-text">
-          <p class="lead">
-            Industrialisation complète d'un processus métier complexe : automatisation de la récupération, 
-            traitement et centralisation de données logistiques multi-formats dispersées.
-          </p>
-          <p>
-            Ce projet a transformé le traitement documentaire en créant un pipeline intelligent capable 
-            d'extraire, analyser et enrichir automatiquement plus de 500 fichiers hétérogènes, 
-            éliminant totalement les retraitements manuels tout en garantissant la conformité RGPD.
-          </p>
+                     <p class="lead">
+             <span data-lang="fr">Industrialisation complète d'un processus métier complexe : automatisation de la récupération, 
+             traitement et centralisation de données logistiques multi-formats dispersées.</span>
+             <span data-lang="en">Complete industrialization of a complex business process: automation of data retrieval, 
+             processing and centralization of multi-format logistics data from scattered sources.</span>
+           </p>
+           <p>
+             <span data-lang="fr">Ce projet a transformé le traitement documentaire en créant un pipeline intelligent capable 
+             d'extraire, analyser et enrichir automatiquement plus de 500 fichiers hétérogènes, 
+             éliminant totalement les retraitements manuels tout en garantissant la conformité RGPD.</span>
+             <span data-lang="en">This project transformed document processing by creating an intelligent pipeline capable 
+             of automatically extracting, analyzing and enriching more than 500 heterogeneous files, 
+             completely eliminating manual reprocessing while ensuring GDPR compliance.</span>
+           </p>
         </div>
         <div class="project-image">
-          <div class="fake-architecture-diagram">
-            <div class="diagram-header">Pipeline Automatisé</div>
-            <div class="diagram-flow">
-              <div class="flow-node source">
-                <i class="fas fa-envelope"></i>
-                <span>Sources</span>
-              </div>
-              <div class="flow-connector"></div>
-              <div class="flow-node process">
-                <i class="fas fa-cogs"></i>
-                <span>Traitement</span>
-              </div>
-              <div class="flow-connector"></div>
-              <div class="flow-node output">
-                <i class="fas fa-database"></i>
-                <span>Stockage</span>
-              </div>
-            </div>
-            <div class="diagram-stats">
-              <div class="stat-item">
-                <span class="stat-value">500+</span>
-                <span class="stat-label">Fichiers</span>
-              </div>
-              <div class="stat-item">
-                <span class="stat-value">100%</span>
-                <span class="stat-label">Automatisé</span>
-              </div>
-            </div>
-          </div>
-          <p class="image-caption">Architecture du pipeline d'extraction intelligente</p>
+                     <div class="fake-architecture-diagram">
+             <div class="diagram-header">
+               <span data-lang="fr">Pipeline Automatisé</span>
+               <span data-lang="en">Automated Pipeline</span>
+             </div>
+             <div class="diagram-flow">
+               <div class="flow-node source">
+                 <i class="fas fa-envelope"></i>
+                 <span data-lang="fr">Sources</span>
+                 <span data-lang="en">Sources</span>
+               </div>
+               <div class="flow-connector"></div>
+               <div class="flow-node process">
+                 <i class="fas fa-cogs"></i>
+                 <span data-lang="fr">Traitement</span>
+                 <span data-lang="en">Processing</span>
+               </div>
+               <div class="flow-connector"></div>
+               <div class="flow-node output">
+                 <i class="fas fa-database"></i>
+                 <span data-lang="fr">Stockage</span>
+                 <span data-lang="en">Storage</span>
+               </div>
+             </div>
+             <div class="diagram-stats">
+               <div class="stat-item">
+                 <span class="stat-value">500+</span>
+                 <span class="stat-label">
+                   <span data-lang="fr">Fichiers</span>
+                   <span data-lang="en">Files</span>
+                 </span>
+               </div>
+               <div class="stat-item">
+                 <span class="stat-value">100%</span>
+                 <span class="stat-label">
+                   <span data-lang="fr">Automatisé</span>
+                   <span data-lang="en">Automated</span>
+                 </span>
+               </div>
+             </div>
+           </div>
+           <p class="image-caption">
+             <span data-lang="fr">Architecture du pipeline d'extraction intelligente</span>
+             <span data-lang="en">Intelligent extraction pipeline architecture</span>
+           </p>
         </div>
       </div>
     </div>
@@ -186,30 +215,75 @@
   <!-- ========== PROBLEM & SOLUTION ========== -->
   <section class="project-section bg-alt">
     <div class="container">
-      <h2 class="section-title"><i class="fas fa-lightbulb"></i> Problématique & Solution</h2>
+             <h2 class="section-title"><i class="fas fa-lightbulb"></i> 
+         <span data-lang="fr">Problématique & Solution</span>
+         <span data-lang="en">Business Challenge & Solution</span>
+       </h2>
       <div class="problem-solution-grid">
-        <div class="problem-card">
-          <h3><i class="fas fa-exclamation-triangle"></i> Défis Initiaux</h3>
-          <ul>
-            <li>Fichiers dispersés dans multiples sources (mails, PDF, Excel)</li>
-            <li>Formats hétérogènes et noms non standardisés</li>
-            <li>Retraitements manuels chronophages et sources d'erreurs</li>
-            <li>Aucune centralisation automatisée</li>
-            <li>Lecture complexe de documents PDF logistiques</li>
-            <li>Conformité RGPD non maîtrisée</li>
-          </ul>
-        </div>
-        <div class="solution-card">
-          <h3><i class="fas fa-check-circle"></i> Solution Déployée</h3>
-          <ul>
-            <li>Déclenchement automatisé via Power Automate depuis Outlook</li>
-            <li>Pipelines Alteryx pour agrégation intelligente</li>
-            <li>OCR avancé pour lecture documentaire complexe</li>
-            <li>Orchestration Python pour contrôle et enrichissement</li>
-            <li>Intégration Power BI avec suivi temps réel</li>
-            <li>Référentiel sécurisé RGPD-compliant</li>
-          </ul>
-        </div>
+                 <div class="problem-card">
+           <h3><i class="fas fa-exclamation-triangle"></i> 
+             <span data-lang="fr">Défis Initiaux</span>
+             <span data-lang="en">Initial Challenges</span>
+           </h3>
+           <ul>
+             <li>
+               <span data-lang="fr">Fichiers dispersés dans multiples sources (mails, PDF, Excel)</span>
+               <span data-lang="en">Files scattered across multiple sources (emails, PDF, Excel)</span>
+             </li>
+             <li>
+               <span data-lang="fr">Formats hétérogènes et noms non standardisés</span>
+               <span data-lang="en">Heterogeneous formats and non-standardized names</span>
+             </li>
+             <li>
+               <span data-lang="fr">Retraitements manuels chronophages et sources d'erreurs</span>
+               <span data-lang="en">Time-consuming manual reprocessing and error sources</span>
+             </li>
+             <li>
+               <span data-lang="fr">Aucune centralisation automatisée</span>
+               <span data-lang="en">No automated centralization</span>
+             </li>
+             <li>
+               <span data-lang="fr">Lecture complexe de documents PDF logistiques</span>
+               <span data-lang="en">Complex reading of logistics PDF documents</span>
+             </li>
+             <li>
+               <span data-lang="fr">Conformité RGPD non maîtrisée</span>
+               <span data-lang="en">GDPR compliance not mastered</span>
+             </li>
+           </ul>
+         </div>
+         <div class="solution-card">
+           <h3><i class="fas fa-check-circle"></i> 
+             <span data-lang="fr">Solution Déployée</span>
+             <span data-lang="en">Deployed Solution</span>
+           </h3>
+           <ul>
+             <li>
+               <span data-lang="fr">Déclenchement automatisé via Power Automate depuis Outlook</span>
+               <span data-lang="en">Automated triggering via Power Automate from Outlook</span>
+             </li>
+             <li>
+               <span data-lang="fr">Pipelines Alteryx pour agrégation intelligente</span>
+               <span data-lang="en">Alteryx pipelines for intelligent aggregation</span>
+             </li>
+             <li>
+               <span data-lang="fr">OCR avancé pour lecture documentaire complexe</span>
+               <span data-lang="en">Advanced OCR for complex document reading</span>
+             </li>
+             <li>
+               <span data-lang="fr">Orchestration Python pour contrôle et enrichissement</span>
+               <span data-lang="en">Python orchestration for control and enrichment</span>
+             </li>
+             <li>
+               <span data-lang="fr">Intégration Power BI avec suivi temps réel</span>
+               <span data-lang="en">Power BI integration with real-time monitoring</span>
+             </li>
+             <li>
+               <span data-lang="fr">Référentiel sécurisé RGPD-compliant</span>
+               <span data-lang="en">Secure GDPR-compliant repository</span>
+             </li>
+           </ul>
+         </div>
       </div>
     </div>
   </section>
@@ -217,43 +291,70 @@
   <!-- ========== FEATURES ========== -->
   <section class="project-section">
     <div class="container">
-      <h2 class="section-title"><i class="fas fa-cogs"></i> Fonctionnalités Clés</h2>
+             <h2 class="section-title"><i class="fas fa-cogs"></i> 
+         <span data-lang="fr">Fonctionnalités Clés</span>
+         <span data-lang="en">Key Features</span>
+       </h2>
       <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon outlook">
-            <i class="fas fa-envelope"></i>
-          </div>
-          <h3>Extraction Automatisée</h3>
-          <p>Power Automate surveille et extrait automatiquement les pièces jointes depuis Outlook</p>
-          <div class="feature-tech">Power Automate</div>
-        </div>
-        
-        <div class="feature-card">
-          <div class="feature-icon alteryx">
-            <i class="fas fa-project-diagram"></i>
-          </div>
-          <h3>Agrégation Intelligente</h3>
-          <p>Pipelines Alteryx normalisent et agrègent les fichiers hétérogènes automatiquement</p>
-          <div class="feature-tech">Alteryx</div>
-        </div>
-        
-        <div class="feature-card">
-          <div class="feature-icon ocr">
-            <i class="fas fa-eye"></i>
-          </div>
-          <h3>Lecture OCR Avancée</h3>
-          <p>Technologie OCR extrait les données depuis PDF complexes et images logistiques</p>
-          <div class="feature-tech">OCR Engine</div>
-        </div>
-        
-        <div class="feature-card">
-          <div class="feature-icon python">
-            <i class="fab fa-python"></i>
-          </div>
-          <h3>Orchestration Python</h3>
-          <p>Scripts Python enrichissent, contrôlent qualité et orchestrent les flux de données</p>
-          <div class="feature-tech">Python</div>
-        </div>
+                 <div class="feature-card">
+           <div class="feature-icon outlook">
+             <i class="fas fa-envelope"></i>
+           </div>
+           <h3>
+             <span data-lang="fr">Extraction Automatisée</span>
+             <span data-lang="en">Automated Extraction</span>
+           </h3>
+           <p>
+             <span data-lang="fr">Power Automate surveille et extrait automatiquement les pièces jointes depuis Outlook</span>
+             <span data-lang="en">Power Automate monitors and automatically extracts attachments from Outlook</span>
+           </p>
+           <div class="feature-tech">Power Automate</div>
+         </div>
+         
+         <div class="feature-card">
+           <div class="feature-icon alteryx">
+             <i class="fas fa-project-diagram"></i>
+           </div>
+           <h3>
+             <span data-lang="fr">Agrégation Intelligente</span>
+             <span data-lang="en">Intelligent Aggregation</span>
+           </h3>
+           <p>
+             <span data-lang="fr">Pipelines Alteryx normalisent et agrègent les fichiers hétérogènes automatiquement</span>
+             <span data-lang="en">Alteryx pipelines normalize and aggregate heterogeneous files automatically</span>
+           </p>
+           <div class="feature-tech">Alteryx</div>
+         </div>
+         
+         <div class="feature-card">
+           <div class="feature-icon ocr">
+             <i class="fas fa-eye"></i>
+           </div>
+           <h3>
+             <span data-lang="fr">Lecture OCR Avancée</span>
+             <span data-lang="en">Advanced OCR Reading</span>
+           </h3>
+           <p>
+             <span data-lang="fr">Technologie OCR extrait les données depuis PDF complexes et images logistiques</span>
+             <span data-lang="en">OCR technology extracts data from complex PDFs and logistics images</span>
+           </p>
+           <div class="feature-tech">OCR Engine</div>
+         </div>
+         
+         <div class="feature-card">
+           <div class="feature-icon python">
+             <i class="fab fa-python"></i>
+           </div>
+           <h3>
+             <span data-lang="fr">Orchestration Python</span>
+             <span data-lang="en">Python Orchestration</span>
+           </h3>
+           <p>
+             <span data-lang="fr">Scripts Python enrichissent, contrôlent qualité et orchestrent les flux de données</span>
+             <span data-lang="en">Python scripts enrich, quality control and orchestrate data flows</span>
+           </p>
+           <div class="feature-tech">Python</div>
+         </div>
       </div>
     </div>
   </section>
@@ -261,73 +362,106 @@
   <!-- ========== TECH STACK ========== -->
   <section class="project-section bg-alt">
     <div class="container">
-      <h2 class="section-title"><i class="fas fa-code"></i> Stack Technique</h2>
+             <h2 class="section-title"><i class="fas fa-code"></i> 
+         <span data-lang="fr">Stack Technique</span>
+         <span data-lang="en">Technical Stack</span>
+       </h2>
       <div class="tech-architecture">
-        <div class="tech-layer">
-          <h3>🔄 Automatisation & Orchestration</h3>
-          <div class="tech-items">
-            <div class="tech-item">
-              <img src="assets/logos/powerautomate.png" alt="Power Automate">
-              <span>Power Automate</span>
-            </div>
-            <div class="tech-item">
-              <i class="fab fa-python"></i>
-              <span>Python Scripts</span>
-            </div>
-            <div class="tech-item">
-              <i class="fas fa-clock"></i>
-              <span>Schedulers</span>
-            </div>
-          </div>
-        </div>
-        
-        <div class="tech-layer">
-          <h3>📊 Traitement & Analyse</h3>
-          <div class="tech-items">
-            <div class="tech-item">
-              <img src="assets/logos/alteryx.png" alt="Alteryx">
-              <span>Alteryx</span>
-            </div>
-            <div class="tech-item">
-              <i class="fas fa-eye"></i>
-              <span>OCR Engine</span>
-            </div>
-            <div class="tech-item">
-              <i class="fas fa-filter"></i>
-              <span>Data Cleansing</span>
-            </div>
-          </div>
-        </div>
-        
-        <div class="tech-layer">
-          <h3>📈 Visualisation & Stockage</h3>
-          <div class="tech-items">
-            <div class="tech-item">
-              <img src="assets/logos/powerbi.png" alt="Power BI">
-              <span>Power BI</span>
-            </div>
-            <div class="tech-item">
-              <i class="fas fa-shield-alt"></i>
-              <span>RGPD Storage</span>
-            </div>
-            <div class="tech-item">
-              <i class="fas fa-database"></i>
-              <span>Data Warehouse</span>
-            </div>
-          </div>
-        </div>
-        
-        <div class="tech-layer">
-          <h3>🎯 Fonctionnalités Avancées</h3>
-          <div class="tech-features">
-            <span class="feature-tag">Extraction Automatisée</span>
-            <span class="feature-tag">OCR Documentaire</span>
-            <span class="feature-tag">Pipelines ETL</span>
-            <span class="feature-tag">Contrôle Qualité</span>
-            <span class="feature-tag">Conformité RGPD</span>
-            <span class="feature-tag">Monitoring Temps Réel</span>
-          </div>
-        </div>
+                 <div class="tech-layer">
+           <h3>
+             <span data-lang="fr">🔄 Automatisation & Orchestration</span>
+             <span data-lang="en">🔄 Automation & Orchestration</span>
+           </h3>
+           <div class="tech-items">
+             <div class="tech-item">
+               <img src="assets/logos/powerautomate.png" alt="Power Automate">
+               <span>Power Automate</span>
+             </div>
+             <div class="tech-item">
+               <i class="fab fa-python"></i>
+               <span>Python Scripts</span>
+             </div>
+             <div class="tech-item">
+               <i class="fas fa-clock"></i>
+               <span>Schedulers</span>
+             </div>
+           </div>
+         </div>
+         
+         <div class="tech-layer">
+           <h3>
+             <span data-lang="fr">📊 Traitement & Analyse</span>
+             <span data-lang="en">📊 Processing & Analysis</span>
+           </h3>
+           <div class="tech-items">
+             <div class="tech-item">
+               <img src="assets/logos/alteryx.png" alt="Alteryx">
+               <span>Alteryx</span>
+             </div>
+             <div class="tech-item">
+               <i class="fas fa-eye"></i>
+               <span>OCR Engine</span>
+             </div>
+             <div class="tech-item">
+               <i class="fas fa-filter"></i>
+               <span>Data Cleansing</span>
+             </div>
+           </div>
+         </div>
+         
+         <div class="tech-layer">
+           <h3>
+             <span data-lang="fr">📈 Visualisation & Stockage</span>
+             <span data-lang="en">📈 Visualization & Storage</span>
+           </h3>
+           <div class="tech-items">
+             <div class="tech-item">
+               <img src="assets/logos/powerbi.png" alt="Power BI">
+               <span>Power BI</span>
+             </div>
+             <div class="tech-item">
+               <i class="fas fa-shield-alt"></i>
+               <span>RGPD Storage</span>
+             </div>
+             <div class="tech-item">
+               <i class="fas fa-database"></i>
+               <span>Data Warehouse</span>
+             </div>
+           </div>
+         </div>
+         
+         <div class="tech-layer">
+           <h3>
+             <span data-lang="fr">🎯 Fonctionnalités Avancées</span>
+             <span data-lang="en">🎯 Advanced Features</span>
+           </h3>
+           <div class="tech-features">
+             <span class="feature-tag">
+               <span data-lang="fr">Extraction Automatisée</span>
+               <span data-lang="en">Automated Extraction</span>
+             </span>
+             <span class="feature-tag">
+               <span data-lang="fr">OCR Documentaire</span>
+               <span data-lang="en">Document OCR</span>
+             </span>
+             <span class="feature-tag">
+               <span data-lang="fr">Pipelines ETL</span>
+               <span data-lang="en">ETL Pipelines</span>
+             </span>
+             <span class="feature-tag">
+               <span data-lang="fr">Contrôle Qualité</span>
+               <span data-lang="en">Quality Control</span>
+             </span>
+             <span class="feature-tag">
+               <span data-lang="fr">Conformité RGPD</span>
+               <span data-lang="en">GDPR Compliance</span>
+             </span>
+             <span class="feature-tag">
+               <span data-lang="fr">Monitoring Temps Réel</span>
+               <span data-lang="en">Real-time Monitoring</span>
+             </span>
+           </div>
+         </div>
       </div>
     </div>
   </section>
@@ -335,99 +469,185 @@
   <!-- ========== RESULTS & IMPACT ========== -->
   <section class="project-section">
     <div class="container">
-      <h2 class="section-title"><i class="fas fa-trophy"></i> Résultats & Impact Business</h2>
+             <h2 class="section-title"><i class="fas fa-trophy"></i> 
+         <span data-lang="fr">Résultats & Impact Business</span>
+         <span data-lang="en">Results & Business Impact</span>
+       </h2>
       
-      <div class="results-showcase">
-        <div class="result-highlight">
-          <div class="highlight-icon">
-            <i class="fas fa-rocket"></i>
-          </div>
-          <h3>Industrialisation Complète</h3>
-          <p>Transformation d'un processus manuel en pipeline automatisé industriel</p>
-        </div>
-      </div>
+             <div class="results-showcase">
+         <div class="result-highlight">
+           <div class="highlight-icon">
+             <i class="fas fa-rocket"></i>
+           </div>
+           <h3>
+             <span data-lang="fr">Industrialisation Complète</span>
+             <span data-lang="en">Complete Industrialization</span>
+           </h3>
+           <p>
+             <span data-lang="fr">Transformation d'un processus manuel en pipeline automatisé industriel</span>
+             <span data-lang="en">Transformation of a manual process into an automated industrial pipeline</span>
+           </p>
+         </div>
+       </div>
       
       <div class="results-grid">
-        <div class="result-card primary">
-          <div class="result-icon">
-            <i class="fas fa-chart-line"></i>
-          </div>
-          <h3>Gain de Temps Majeur</h3>
-          <p><strong>+500 fichiers</strong> traités automatiquement sans intervention humaine</p>
-        </div>
-        
-        <div class="result-card success">
-          <div class="result-icon">
-            <i class="fas fa-magic"></i>
-          </div>
-          <h3>Enrichissement Automatique</h3>
-          <p>Données enrichies et standardisées automatiquement avec validation qualité</p>
-        </div>
-        
-        <div class="result-card accent">
-          <div class="result-icon">
-            <i class="fas fa-ban"></i>
-          </div>
-          <h3>Zéro Ressaisie Manuelle</h3>
-          <p>Élimination totale des tâches manuelles répétitives et sources d'erreurs</p>
-        </div>
-        
-        <div class="result-card security">
-          <div class="result-icon">
-            <i class="fas fa-shield-alt"></i>
-          </div>
-          <h3>Conformité RGPD Assurée</h3>
-          <p>Stockage maîtrisé et sécurisé respectant intégralement la réglementation</p>
-        </div>
+                 <div class="result-card primary">
+           <div class="result-icon">
+             <i class="fas fa-chart-line"></i>
+           </div>
+           <h3>
+             <span data-lang="fr">Gain de Temps Majeur</span>
+             <span data-lang="en">Major Time Savings</span>
+           </h3>
+           <p>
+             <span data-lang="fr"><strong>+500 fichiers</strong> traités automatiquement sans intervention humaine</span>
+             <span data-lang="en"><strong>+500 files</strong> processed automatically without human intervention</span>
+           </p>
+         </div>
+         
+         <div class="result-card success">
+           <div class="result-icon">
+             <i class="fas fa-magic"></i>
+           </div>
+           <h3>
+             <span data-lang="fr">Enrichissement Automatique</span>
+             <span data-lang="en">Automatic Enrichment</span>
+           </h3>
+           <p>
+             <span data-lang="fr">Données enrichies et standardisées automatiquement avec validation qualité</span>
+             <span data-lang="en">Data automatically enriched and standardized with quality validation</span>
+           </p>
+         </div>
+         
+         <div class="result-card accent">
+           <div class="result-icon">
+             <i class="fas fa-ban"></i>
+           </div>
+           <h3>
+             <span data-lang="fr">Zéro Ressaisie Manuelle</span>
+             <span data-lang="en">Zero Manual Re-entry</span>
+           </h3>
+           <p>
+             <span data-lang="fr">Élimination totale des tâches manuelles répétitives et sources d'erreurs</span>
+             <span data-lang="en">Complete elimination of repetitive manual tasks and error sources</span>
+           </p>
+         </div>
+         
+         <div class="result-card security">
+           <div class="result-icon">
+             <i class="fas fa-shield-alt"></i>
+           </div>
+           <h3>
+             <span data-lang="fr">Conformité RGPD Assurée</span>
+             <span data-lang="en">GDPR Compliance Assured</span>
+           </h3>
+           <p>
+             <span data-lang="fr">Stockage maîtrisé et sécurisé respectant intégralement la réglementation</span>
+             <span data-lang="en">Controlled and secure storage fully respecting regulations</span>
+           </p>
+         </div>
       </div>
       
-      <div class="impact-summary">
-        <h3>🎯 Résultats Quantifiés</h3>
-        <p class="summary-intro">Impact mesurable de l'automatisation sur les processus logistiques :</p>
-        <div class="impact-metrics">
-          <div class="metric">
-            <span class="metric-value">+500</span>
-            <span class="metric-label">Fichiers traités/mois</span>
-            <span class="metric-desc">Documents PDF, Excel, emails automatiquement extraits et traités</span>
-          </div>
-          <div class="metric">
-            <span class="metric-value">Zéro</span>
-            <span class="metric-label">Ressaisie manuelle</span>
-            <span class="metric-desc">Automatisation complète du processus</span>
-          </div>
-          <div class="metric">
-            <span class="metric-value">RGPD</span>
-            <span class="metric-label">Conformité totale</span>
-            <span class="metric-desc">Stockage sécurisé et traçable</span>
-          </div>
-          <div class="metric">
-            <span class="metric-value">Multi-source</span>
-            <span class="metric-label">Formats supportés</span>
-            <span class="metric-desc">PDF, Excel, emails, images</span>
-          </div>
-        </div>
-      </div>
+             <div class="impact-summary">
+         <h3>
+           <span data-lang="fr">🎯 Résultats Quantifiés</span>
+           <span data-lang="en">🎯 Quantified Results</span>
+         </h3>
+         <p class="summary-intro">
+           <span data-lang="fr">Impact mesurable de l'automatisation sur les processus logistiques :</span>
+           <span data-lang="en">Measurable impact of automation on logistics processes:</span>
+         </p>
+         <div class="impact-metrics">
+           <div class="metric">
+             <span class="metric-value">+500</span>
+             <span class="metric-label">
+               <span data-lang="fr">Fichiers traités/mois</span>
+               <span data-lang="en">Files processed/month</span>
+             </span>
+             <span class="metric-desc">
+               <span data-lang="fr">Documents PDF, Excel, emails automatiquement extraits et traités</span>
+               <span data-lang="en">PDF, Excel, emails automatically extracted and processed</span>
+             </span>
+           </div>
+           <div class="metric">
+             <span class="metric-value">
+               <span data-lang="fr">Zéro</span>
+               <span data-lang="en">Zero</span>
+             </span>
+             <span class="metric-label">
+               <span data-lang="fr">Ressaisie manuelle</span>
+               <span data-lang="en">Manual re-entry</span>
+             </span>
+             <span class="metric-desc">
+               <span data-lang="fr">Automatisation complète du processus</span>
+               <span data-lang="en">Complete process automation</span>
+             </span>
+           </div>
+                       <div class="metric">
+              <span class="metric-value">
+                <span data-lang="fr">RGPD</span>
+                <span data-lang="en">GDPR</span>
+              </span>
+              <span class="metric-label">
+                <span data-lang="fr">Conformité totale</span>
+                <span data-lang="en">Full compliance</span>
+              </span>
+              <span class="metric-desc">
+                <span data-lang="fr">Stockage sécurisé et traçable</span>
+                <span data-lang="en">Secure and traceable storage</span>
+              </span>
+            </div>
+           <div class="metric">
+             <span class="metric-value">
+               <span data-lang="fr">Multi-source</span>
+               <span data-lang="en">Multi-source</span>
+             </span>
+             <span class="metric-label">
+               <span data-lang="fr">Formats supportés</span>
+               <span data-lang="en">Supported formats</span>
+             </span>
+             <span class="metric-desc">
+               <span data-lang="fr">PDF, Excel, emails, images</span>
+               <span data-lang="en">PDF, Excel, emails, images</span>
+             </span>
+           </div>
+         </div>
+       </div>
     </div>
   </section>
+
+    <!-- Back to Top Button -->
+                             <button id="backToTop" class="back-to-top" aria-label="Retour en haut de la page">
+                      <i class="fas fa-arrow-up"></i>
+                    </button>
 
   <!-- ========== NAVIGATION PROJETS ========== -->
   <section class="project-navigation">
     <div class="container">
       <div class="nav-projects">
-        <a href="optimisation-supply-chain.html" class="nav-btn">
-          <i class="fas fa-arrow-left"></i> Projet précédent
-        </a>
-        <div class="nav-center">
-          <a href="index.html#projects" class="nav-btn">
-            <i class="fas fa-th-large"></i> Tous les projets
-          </a>
-        </div>
-        <div class="nav-next">
-          <span class="next-label">Portfolio complet :</span>
-          <a href="index.html" class="nav-btn primary">
-            Retour accueil <i class="fas fa-home"></i>
-          </a>
-        </div>
+                 <a href="optimisation-supply-chain.html" class="nav-btn">
+           <i class="fas fa-arrow-left"></i> 
+           <span data-lang="fr">Projet précédent</span>
+           <span data-lang="en">Previous Project</span>
+         </a>
+         <div class="nav-center">
+           <a href="index.html#projects" class="nav-btn">
+             <i class="fas fa-th-large"></i> 
+             <span data-lang="fr">Tous les projets</span>
+             <span data-lang="en">All Projects</span>
+           </a>
+         </div>
+         <div class="nav-next">
+           <span class="next-label">
+             <span data-lang="fr">Portfolio complet :</span>
+             <span data-lang="en">Complete Portfolio:</span>
+           </span>
+           <a href="index.html" class="nav-btn primary">
+             <span data-lang="fr">Retour accueil</span>
+             <span data-lang="en">Back to Home</span>
+             <i class="fas fa-home"></i>
+           </a>
+         </div>
       </div>
     </div>
   </section>
@@ -487,6 +707,33 @@
       // Check for saved language preference
       const savedLang = localStorage.getItem('preferred-language');
       if (savedLang && savedLang !== 'fr') {
+        switchLanguage(savedLang);
+      }
+    });
+  </script>
+  <!-- Scripts -->
+  <script src="script.js"></script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const languageSelect = document.getElementById('languageSelect');
+      const body = document.body;
+
+      function switchLanguage(lang) {
+        body.className = `lang-${lang}`;
+        document.documentElement.lang = lang;
+        localStorage.setItem('preferred-language', lang);
+      }
+
+      // Add change event listener to select
+      languageSelect.addEventListener('change', function() {
+        const selectedLang = this.value;
+        switchLanguage(selectedLang);
+      });
+
+      const savedLang = localStorage.getItem('preferred-language');
+      if (savedLang && savedLang !== 'fr') {
+        languageSelect.value = savedLang;
         switchLanguage(savedLang);
       }
     });
