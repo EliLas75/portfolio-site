@@ -11,8 +11,54 @@
   <!-- Styles -->
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    .language-switcher {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-left: auto;
+    }
+    
+    .lang-btn {
+      background: var(--bg-alt);
+      border: 2px solid var(--highlight);
+      color: var(--text);
+      padding: 8px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+    }
+    
+    .lang-btn.active {
+      background: var(--highlight);
+      color: white;
+    }
+    
+    .lang-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    
+    [data-lang="en"] {
+      display: none;
+    }
+    
+    .lang-fr [data-lang="en"] {
+      display: none;
+    }
+    
+    .lang-en [data-lang="fr"] {
+      display: none;
+    }
+    
+    .lang-en [data-lang="en"] {
+      display: block;
+    }
+  </style>
 </head>
-<body>
+<body class="lang-fr">
 
   <!-- ========== NAVIGATION ========== -->
   <nav class="navbar">
@@ -23,6 +69,12 @@
         <li><a href="index.html#skills">Compétences</a></li>
         <li><a href="index.html#projects">Projets</a></li>
       </ul>
+      
+      <!-- Language Switcher -->
+      <div class="language-switcher">
+        <button class="lang-btn active" data-lang="fr">🇫🇷 FR</button>
+        <button class="lang-btn" data-lang="en">🇺🇸 EN</button>
+      </div>
     </div>
   </nav>
 
@@ -35,8 +87,14 @@
             <i class="fas fa-check-circle"></i> Terminé
           </span>
         </div>
-        <h1>Optimisation Supply Chain</h1>
-        <p class="project-subtitle">Prévisions Intelligentes & Disponibilité Stocks Internationale</p>
+        <h1>
+          <span data-lang="fr">Optimisation Supply Chain</span>
+          <span data-lang="en">Global Supply Chain Optimization</span>
+        </h1>
+        <p class="project-subtitle">
+          <span data-lang="fr">Prévisions Intelligentes & Disponibilité Stocks Internationale</span>
+          <span data-lang="en">Enterprise Forecasting Intelligence & Global Inventory Visibility</span>
+        </p>
         <div class="project-tech-badges">
           <span class="tech-badge">Power BI</span>
           <span class="tech-badge">Power Automate</span>
@@ -51,18 +109,52 @@
   <!-- ========== PROJECT OVERVIEW ========== -->
   <section class="project-section">
     <div class="container">
-      <h2 class="section-title"><i class="fas fa-bullseye"></i> Vue d'ensemble</h2>
+      <h2 class="section-title">
+        <i class="fas fa-bullseye"></i> 
+        <span data-lang="fr">Vue d'ensemble</span>
+        <span data-lang="en">Executive Summary</span>
+      </h2>
       <div class="content-grid">
         <div class="content-text">
           <p class="lead">
-            Transformation complète des processus de prévision et de gestion des stocks à l'échelle internationale 
-            grâce à l'intelligence décisionnelle et l'automatisation avancée.
+            <span data-lang="fr">
+              Transformation complète des processus de prévision et de gestion des stocks à l'échelle internationale 
+              grâce à l'intelligence décisionnelle et l'automatisation avancée.
+            </span>
+            <span data-lang="en">
+              Comprehensive transformation of global forecasting and inventory management processes 
+              through advanced business intelligence and end-to-end process automation.
+            </span>
           </p>
           <p>
-            Ce projet a optimisé significativement les processus supply chain en centralisant les données critiques dispersées, 
-            créant un système unifié de prévisions plus fiables et facilitant la prise de décision basée sur les données pour 
-            améliorer la disponibilité produits et réduire les ruptures de stock.
+            <span data-lang="fr">
+              Ce projet a optimisé significativement les processus supply chain en centralisant les données critiques dispersées, 
+              créant un système unifié de prévisions plus fiables et facilitant la prise de décision basée sur les données pour 
+              améliorer la disponibilité produits et réduire les ruptures de stock.
+            </span>
+            <span data-lang="en">
+              This enterprise-level project revolutionized supply chain operations by centralizing 
+              critical data sources, implementing intelligent forecasting algorithms, and delivering 
+              real-time decision-making capabilities that significantly improved product availability 
+              while reducing stockout risks across international subsidiaries.
+            </span>
           </p>
+          
+          <!-- English-only metrics -->
+          <div class="key-metrics" data-lang="en">
+            <div class="metric">
+              <span class="metric-number">100%</span>
+              <span class="metric-label">Automated Reporting</span>
+            </div>
+            <div class="metric">
+              <span class="metric-number">0%</span>
+              <span class="metric-label">Manual Processing</span>
+            </div>
+            <div class="metric">
+              <span class="metric-number">Global</span>
+              <span class="metric-label">Multi-Subsidiary Coverage</span>
+            </div>
+          </div>
         </div>
         <div class="project-image">
           <img src="assets/projects/optimisation-supply-chain/Présentation%20Dashboard.png" alt="Dashboard principal Optimisation Supply Chain">
@@ -288,5 +380,47 @@
   </footer>
 
   <script src="script.js"></script>
+  
+  <!-- Language Switcher Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const langBtns = document.querySelectorAll('.lang-btn');
+      const body = document.body;
+      
+      // Language switching functionality
+      function switchLanguage(lang) {
+        // Update body class
+        body.className = `lang-${lang}`;
+        
+        // Update active button state
+        langBtns.forEach(btn => {
+          btn.classList.remove('active');
+          if (btn.getAttribute('data-lang') === lang) {
+            btn.classList.add('active');
+          }
+        });
+        
+        // Update HTML lang attribute
+        document.documentElement.lang = lang;
+        
+        // Store preference in localStorage
+        localStorage.setItem('preferred-language', lang);
+      }
+      
+      // Add click event listeners
+      langBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+          const lang = this.getAttribute('data-lang');
+          switchLanguage(lang);
+        });
+      });
+      
+      // Check for saved language preference
+      const savedLang = localStorage.getItem('preferred-language');
+      if (savedLang && savedLang !== 'fr') {
+        switchLanguage(savedLang);
+      }
+    });
+  </script>
 </body>
 </html>

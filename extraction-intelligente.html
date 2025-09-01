@@ -11,8 +11,54 @@
   <!-- Styles -->
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    .language-switcher {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-left: auto;
+    }
+    
+    .lang-btn {
+      background: var(--bg-alt);
+      border: 2px solid var(--highlight);
+      color: var(--text);
+      padding: 8px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+    }
+    
+    .lang-btn.active {
+      background: var(--highlight);
+      color: white;
+    }
+    
+    .lang-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    
+    [data-lang="en"] {
+      display: none;
+    }
+    
+    .lang-fr [data-lang="en"] {
+      display: none;
+    }
+    
+    .lang-en [data-lang="fr"] {
+      display: none;
+    }
+    
+    .lang-en [data-lang="en"] {
+      display: block;
+    }
+  </style>
 </head>
-<body>
+<body class="lang-fr">
 
   <!-- ========== NAVIGATION ========== -->
   <nav class="navbar">
@@ -23,6 +69,12 @@
         <li><a href="index.html#skills">Compétences</a></li>
         <li><a href="index.html#projects">Projets</a></li>
       </ul>
+      
+      <!-- Language Switcher -->
+      <div class="language-switcher">
+        <button class="lang-btn active" data-lang="fr">🇫🇷 FR</button>
+        <button class="lang-btn" data-lang="en">🇺🇸 EN</button>
+      </div>
     </div>
   </nav>
 
@@ -35,8 +87,14 @@
             <i class="fas fa-check-circle"></i> Terminé
           </span>
         </div>
-        <h1>Extraction Intelligente</h1>
-        <p class="project-subtitle">Automatisation Pipelines Multi-Sources & Traitement Documentaire</p>
+        <h1>
+          <span data-lang="fr">Extraction Intelligente</span>
+          <span data-lang="en">Intelligent Data Extraction & Automation</span>
+        </h1>
+        <p class="project-subtitle">
+          <span data-lang="fr">Automatisation Pipelines Multi-Sources & Traitement Documentaire</span>
+          <span data-lang="en">Enterprise Multi-Source Pipeline & Advanced Document Processing</span>
+        </p>
         <div class="project-tech-badges">
           <span class="tech-badge">Power Automate</span>
           <span class="tech-badge">Alteryx</span>
@@ -49,15 +107,24 @@
         <div class="hero-metrics">
           <div class="hero-metric">
             <span class="metric-number">+500</span>
-            <span class="metric-label">Fichiers Automatisés</span>
+            <span class="metric-label">
+              <span data-lang="fr">Fichiers Automatisés</span>
+              <span data-lang="en">Files Automated</span>
+            </span>
           </div>
           <div class="hero-metric">
             <span class="metric-number">0</span>
-            <span class="metric-label">Ressaisie Manuelle</span>
+            <span class="metric-label">
+              <span data-lang="fr">Ressaisie Manuelle</span>
+              <span data-lang="en">Manual Entry</span>
+            </span>
           </div>
           <div class="hero-metric">
             <span class="metric-number">100%</span>
-            <span class="metric-label">Conformité RGPD</span>
+            <span class="metric-label">
+              <span data-lang="fr">Conformité RGPD</span>
+              <span data-lang="en">GDPR Compliant</span>
+            </span>
           </div>
         </div>
       </div>
@@ -382,5 +449,47 @@
   </footer>
 
   <script src="script.js"></script>
+  
+  <!-- Language Switcher Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const langBtns = document.querySelectorAll('.lang-btn');
+      const body = document.body;
+      
+      // Language switching functionality
+      function switchLanguage(lang) {
+        // Update body class
+        body.className = `lang-${lang}`;
+        
+        // Update active button state
+        langBtns.forEach(btn => {
+          btn.classList.remove('active');
+          if (btn.getAttribute('data-lang') === lang) {
+            btn.classList.add('active');
+          }
+        });
+        
+        // Update HTML lang attribute
+        document.documentElement.lang = lang;
+        
+        // Store preference in localStorage
+        localStorage.setItem('preferred-language', lang);
+      }
+      
+      // Add click event listeners
+      langBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+          const lang = this.getAttribute('data-lang');
+          switchLanguage(lang);
+        });
+      });
+      
+      // Check for saved language preference
+      const savedLang = localStorage.getItem('preferred-language');
+      if (savedLang && savedLang !== 'fr') {
+        switchLanguage(savedLang);
+      }
+    });
+  </script>
 </body>
 </html>
