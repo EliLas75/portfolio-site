@@ -365,3 +365,236 @@ function createProjectGallery(containerId, images) {
   });
 }
 
+// ========== GOOGLE ANALYTICS EVENTS TRACKING ==========
+document.addEventListener('DOMContentLoaded', function() {
+  // Fonction pour envoyer des événements à Google Analytics
+  function trackEvent(eventName, eventCategory, eventAction, eventLabel, eventValue) {
+    if (typeof gtag !== 'undefined') {
+      gtag('event', eventName, {
+        event_category: eventCategory,
+        event_action: eventAction,
+        event_label: eventLabel,
+        value: eventValue
+      });
+    }
+    
+    // Alternative pour Google Tag Manager
+    if (typeof dataLayer !== 'undefined') {
+      dataLayer.push({
+        'event': eventName,
+        'event_category': eventCategory,
+        'event_action': eventAction,
+        'event_label': eventLabel,
+        'value': eventValue
+      });
+    }
+  }
+
+  // Suivi des téléchargements de CV
+  const cvDownloadLinks = document.querySelectorAll('a[href*="Eliesse.pdf"]');
+  cvDownloadLinks.forEach(link => {
+    link.addEventListener('click', function() {
+      trackEvent('cv_download', 'engagement', 'download', 'CV_Eliesse_Laslah', 1);
+    });
+  });
+
+  // Suivi des clics sur les projets
+  const projectLinks = document.querySelectorAll('.project-link, .project-card a');
+  projectLinks.forEach(link => {
+    link.addEventListener('click', function() {
+      const projectName = this.closest('.project-card')?.querySelector('h3')?.textContent || 
+                         this.textContent.trim();
+      trackEvent('project_view', 'engagement', 'click', projectName, 1);
+    });
+  });
+
+  // Suivi des clics sur les liens sociaux
+  const socialLinks = document.querySelectorAll('.social-icons a, .footer-links a');
+  socialLinks.forEach(link => {
+    link.addEventListener('click', function() {
+      const platform = this.getAttribute('aria-label') || 
+                      this.querySelector('i').className.split('fa-')[1] || 
+                      'unknown';
+      trackEvent('social_click', 'engagement', 'click', platform, 1);
+    });
+  });
+
+  // Suivi des soumissions de formulaire de contact
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', function() {
+      trackEvent('contact_form_submit', 'engagement', 'submit', 'contact_form', 1);
+    });
+  }
+
+  // Suivi des changements de langue
+  const languageSelect = document.getElementById('languageSelect');
+  if (languageSelect) {
+    languageSelect.addEventListener('change', function() {
+      trackEvent('language_change', 'engagement', 'change', this.value, 1);
+    });
+  }
+
+  // Suivi des clics sur les liens de navigation
+  const navLinks = document.querySelectorAll('.nav-links a, .nav-btn');
+  navLinks.forEach(link => {
+    link.addEventListener('click', function() {
+      const linkText = this.textContent.trim();
+      const linkHref = this.getAttribute('href');
+      trackEvent('navigation_click', 'engagement', 'click', `${linkText} (${linkHref})`, 1);
+    });
+  });
+
+  // Suivi des interactions avec les compétences
+  const skillCards = document.querySelectorAll('.skill-card');
+  skillCards.forEach(card => {
+    card.addEventListener('click', function() {
+      const skillName = this.querySelector('span')?.textContent || 'unknown_skill';
+      trackEvent('skill_interaction', 'engagement', 'click', skillName, 1);
+    });
+  });
+
+  // Suivi des clics sur les images de galerie
+  const galleryItems = document.querySelectorAll('.gallery-item');
+  galleryItems.forEach((item, index) => {
+    item.addEventListener('click', function() {
+      const imageTitle = this.querySelector('.gallery-item-title')?.textContent || `Image_${index + 1}`;
+      trackEvent('gallery_view', 'engagement', 'click', imageTitle, 1);
+    });
+  });
+
+  // Suivi du scroll (événement de scroll significatif)
+  let scrollTimeout;
+  window.addEventListener('scroll', function() {
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(function() {
+      const scrollPercent = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+      
+      // Envoyer un événement tous les 25% de scroll
+      if (scrollPercent >= 25 && scrollPercent < 50) {
+        trackEvent('scroll_depth', 'engagement', 'scroll', '25%', 25);
+      } else if (scrollPercent >= 50 && scrollPercent < 75) {
+        trackEvent('scroll_depth', 'engagement', 'scroll', '50%', 50);
+      } else if (scrollPercent >= 75 && scrollPercent < 100) {
+        trackEvent('scroll_depth', 'engagement', 'scroll', '75%', 75);
+      } else if (scrollPercent >= 100) {
+        trackEvent('scroll_depth', 'engagement', 'scroll', '100%', 100);
+      }
+    }, 1000);
+  });
+
+  // Suivi du temps passé sur la page
+  let startTime = Date.now();
+  let timeOnPage = 0;
+  
+  setInterval(function() {
+    timeOnPage = Math.round((Date.now() - startTime) / 1000);
+    
+    // Envoyer un événement toutes les 30 secondes
+    if (timeOnPage > 0 && timeOnPage % 30 === 0) {
+      trackEvent('time_on_page', 'engagement', 'time', `${timeOnPage}s`, timeOnPage);
+    }
+  }, 1000);
+
+  // Suivi de la sortie de page
+  window.addEventListener('beforeunload', function() {
+    const finalTime = Math.round((Date.now() - startTime) / 1000);
+    trackEvent('page_exit', 'engagement', 'exit', `${finalTime}s`, finalTime);
+  });
+});
+
+// ========== COOKIE BANNER MANAGEMENT ==========
+document.addEventListener('DOMContentLoaded', function() {
+  const cookieBanner = document.getElementById('cookieBanner');
+  const acceptBtn = document.getElementById('acceptCookies');
+  const declineBtn = document.getElementById('declineCookies');
+  
+  // Vérifier si l'utilisateur a déjà fait un choix
+  const cookieChoice = localStorage.getItem('cookieConsent');
+  
+  if (!cookieChoice) {
+    // Afficher la bannière après 2 secondes
+    setTimeout(() => {
+      cookieBanner.style.display = 'block';
+      setTimeout(() => {
+        cookieBanner.classList.add('show');
+      }, 100);
+    }, 2000);
+  }
+  
+  // Gérer l'acceptation des cookies
+  if (acceptBtn) {
+    acceptBtn.addEventListener('click', function() {
+      localStorage.setItem('cookieConsent', 'accepted');
+      cookieBanner.classList.remove('show');
+      
+      // Activer Google Analytics
+      if (typeof gtag !== 'undefined') {
+        gtag('consent', 'update', {
+          'analytics_storage': 'granted'
+        });
+      }
+      
+      // Masquer la bannière
+      setTimeout(() => {
+        cookieBanner.style.display = 'none';
+      }, 300);
+      
+      // Envoyer un événement de consentement
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'cookie_consent', {
+          'event_category': 'privacy',
+          'event_action': 'accept',
+          'event_label': 'cookies_accepted'
+        });
+      }
+    });
+  }
+  
+  // Gérer le refus des cookies
+  if (declineBtn) {
+    declineBtn.addEventListener('click', function() {
+      localStorage.setItem('cookieConsent', 'declined');
+      cookieBanner.classList.remove('show');
+      
+      // Désactiver Google Analytics
+      if (typeof gtag !== 'undefined') {
+        gtag('consent', 'update', {
+          'analytics_storage': 'denied'
+        });
+      }
+      
+      // Masquer la bannière
+      setTimeout(() => {
+        cookieBanner.style.display = 'none';
+      }, 300);
+      
+      // Envoyer un événement de refus
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'cookie_consent', {
+          'event_category': 'privacy',
+          'event_action': 'decline',
+          'event_label': 'cookies_declined'
+        });
+      }
+    });
+  }
+  
+  // Gérer le consentement initial
+  if (cookieChoice === 'accepted') {
+    // L'utilisateur a accepté, activer le suivi
+    if (typeof gtag !== 'undefined') {
+      gtag('consent', 'update', {
+        'analytics_storage': 'granted'
+      });
+    }
+  } else if (cookieChoice === 'declined') {
+    // L'utilisateur a refusé, désactiver le suivi
+    if (typeof gtag !== 'undefined') {
+      gtag('consent', 'update', {
+        'analytics_storage': 'denied'
+      });
+    }
+  }
+});
+
