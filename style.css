@@ -974,15 +974,27 @@ body {
   border-radius: 16px;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
   padding: 20px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
 }
 
 .project-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  transform: translateY(-8px);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.15);
+  text-decoration: none;
+  color: inherit;
+}
+
+.project-card:hover .project-link {
+  transform: translateX(4px);
+  color: var(--highlight);
 }
 
 .project-card img {
@@ -1027,11 +1039,21 @@ body {
   text-decoration: none;
   font-weight: 600;
   color: var(--accent);
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
+  padding: 8px 16px;
+  background-color: rgba(15, 118, 110, 0.1);
+  border-radius: 20px;
+  border: 1px solid rgba(15, 118, 110, 0.2);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 
-.project-link:hover {
-  color: var(--accent);
+.project-card:hover .project-link {
+  color: var(--highlight);
+  background-color: rgba(20, 184, 166, 0.15);
+  border-color: rgba(20, 184, 166, 0.3);
+  transform: translateX(4px);
 }
 
 /* Fake Pipeline Image */
@@ -1154,22 +1176,15 @@ body {
 /*   GALERIE PROJETS     */
 /* ===================== */
 .project-card img {
-  cursor: pointer;
-}
-
-.project-card a {
-  text-decoration: none;
-  display: block;
-}
-
-.project-card a:hover img {
-  transform: scale(1.02);
   transition: transform 0.3s ease;
 }
 
-.project-card a:hover .fake-pipeline-image {
+.project-card:hover img {
   transform: scale(1.02);
-  transition: transform 0.3s ease;
+}
+
+.project-card:hover .fake-pipeline-image {
+  transform: scale(1.02);
 }
 
 /* ===================== */
